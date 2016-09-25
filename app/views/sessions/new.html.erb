@@ -1,6 +1,6 @@
 <h1>Log In Here</h1>
 
-<%= form_for @user, url: login_path, method: :post do |f| %>
+<%= form_for login_path, method: :post do |f| %>
   <%= f.label :username %>:
   <%= f.text_field :username %>
 
@@ -10,5 +10,5 @@
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %>
 
-  <%= f.submit %>
+  <%= f.submit "Log In" %>
 <% end %>
