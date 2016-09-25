@@ -1,3 +1,5 @@
+<%= form_for for_value do |f| %>
+  
   <%= f.label :username %>:
   <%= f.text_field :username %>
 
@@ -6,3 +8,6 @@
 
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %>
+
+  <%= f.submit submit_value %>
+<% end %>

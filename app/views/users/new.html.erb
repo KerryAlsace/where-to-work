@@ -1,8 +1,3 @@
 <h1>Sign Up Here</h1>
 
-<%= form_for @user do |f| %>
-  
-  <%= render partial: "users/form", locals: {f: f} %>
-
-  <%= f.submit 'Sign Up' %>
-<% end %>
+<%= render partial: "users/form", locals: {for_value: "@user", submit_value: "Sign Up"} %>
