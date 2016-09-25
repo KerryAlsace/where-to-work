@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get '/login' => 'sessions#new'
+  post '/sessions' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
 
   resources :users, :places
 
@@ -23,3 +26,8 @@ end
 #            PUT    /places/:id(.:format)      places#update
 #            DELETE /places/:id(.:format)      places#destroy
 #       root GET    /                          places#index
+
+  ## add this when adding user friends?
+  # resources :users do
+  #   resources :friends
+  # end
