@@ -16,4 +16,11 @@
 15. add has_secure_password to user model
 16. fill out places controller
 17. fill out users controller
-18. 
+18. `rails db:migrate`
+19. create seed file
+20. `rails db:seed`
+21. `rails db:drop`
+22. rename "type" to "place_type" in places migration
+23. `rails db:migrate`
+24. `rails db:seed`
+25. `rails c`
