@@ -14,3 +14,4 @@
 13. Add pry gem
 14. Add bcrypt gem
 15. add has_secure_password to user model
+16. 
