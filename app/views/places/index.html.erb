@@ -1,2 +1,37 @@
 <h1>Places#index</h1>
 <p>Find me in app/views/places/index.html.erb</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Neighborhood</th>
+      <th>Address</th>
+      <th>Comments</th>
+      <th>Has Wifi?</th>
+      <th>Wifi Quality</th>
+      <th>Has Restroom?</th>
+      <th>Restroom Cleanliness</th>
+      <th>Costs Money?</th>
+      <th>Available for Purchase:</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @places.each do |place| %>
+    <tr>
+      <th><%= place.name %></th>
+      <th><%= place.place_type %></th>
+      <th><%= place.neighborhood %></th>
+      <th><%= place.address %></th>
+      <th><%= place.comments %></th>
+      <th><%= place.wifi %></th>
+      <th><%= place.wifi_quality %></th>
+      <th><%= place.public_restroom %></th>
+      <th><%= place.restroom_cleanliness %></th>
+      <th><%= place.costs_money %></th>
+      <th><%= place.available_for_purchase %></th>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

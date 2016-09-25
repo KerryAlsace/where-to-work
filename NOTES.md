@@ -24,3 +24,4 @@
 23. `rails db:migrate`
 24. `rails db:seed`
 25. `rails c`
+26. build out table in places index
