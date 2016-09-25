@@ -2,6 +2,7 @@ class PlacesController < ApplicationController
 
   def index
     @places = Place.all
+    # @places = all places viewable to users
   end
 
   def new

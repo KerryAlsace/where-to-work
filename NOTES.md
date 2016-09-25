@@ -25,3 +25,4 @@
 24. `rails db:seed`
 25. `rails c`
 26. build out table in places index
+27. `rails g controller Sessions`
