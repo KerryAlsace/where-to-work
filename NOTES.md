@@ -26,3 +26,9 @@
 25. `rails c`
 26. build out table in places index
 27. `rails g controller Sessions`
+28. add:
+  get '/login' => 'sessions#new'
+  post '/sessions' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+29. fill out sessions controller
+30. 
