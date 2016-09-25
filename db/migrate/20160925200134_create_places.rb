@@ -12,6 +12,7 @@ class CreatePlaces < ActiveRecord::Migration[5.0]
       t.string :restroom_cleanliness
       t.boolean :costs_money
       t.string :available_for_purchase
+      t.integer :user_id
 
       t.timestamps
     end

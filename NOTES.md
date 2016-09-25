@@ -8,3 +8,6 @@
 7. `rails g controller Users index new show edit`
 8. `rails g model place name:string type:string neighborhood:string address:string comments:text wifi:boolean wifi_quality:string public_restroom:boolean restroom_cleanliness:string costs_money:boolean available_for_purchase:string`
 9. `rails g controller Places index new show edit`
+10. Forgot to add user_id:integer to places, add to migration
+11. Add belongs_to :user to Place model
+12. Add has_many :places to User model
