@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  type: 
+  neighborhood: MyString
+  address: MyString
+  comments: MyText
+  wifi: false
+  wifi_quality: MyString
+  public_restroom: false
+  restroom_cleanliness: MyString
+  costs_money: false
+  available_for_purchase: MyString
+
+two:
+  name: MyString
+  type: 
+  neighborhood: MyString
+  address: MyString
+  comments: MyText
+  wifi: false
+  wifi_quality: MyString
+  public_restroom: false
+  restroom_cleanliness: MyString
+  costs_money: false
+  available_for_purchase: MyString

@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'places/index'
+
+  get 'places/new'
+
+  get 'places/show'
+
+  get 'places/edit'
+
   get 'users/index'
 
   get 'users/new'
