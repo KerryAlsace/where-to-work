@@ -2,7 +2,7 @@
 
 <%= form_for login_path, method: :post do |f| %>
   
-  <%= render 'form' %>
+  <%= render partial: "users/form", locals: {f: f} %>
 
   <%= f.submit "Log In" %>
 <% end %>

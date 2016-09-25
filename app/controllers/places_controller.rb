@@ -1,8 +1,13 @@
 class PlacesController < ApplicationController
 
   def index
-    @places = Place.all
-    # @places = all places viewable to users
+    if current_user
+      @places = Place.all
+    else
+      flash[:alert] = "Must be logged in to do that"
+
+      redirect_to login_path
+    end
   end
 
   def new
