@@ -11,3 +11,6 @@
 10. Forgot to add user_id:integer to places, add to migration
 11. Add belongs_to :user to Place model
 12. Add has_many :places to User model
+13. Add pry gem
+14. Add bcrypt gem
+15. add has_secure_password to user model
