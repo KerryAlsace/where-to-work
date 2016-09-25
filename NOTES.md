@@ -14,4 +14,6 @@
 13. Add pry gem
 14. Add bcrypt gem
 15. add has_secure_password to user model
-16. 
+16. fill out places controller
+17. fill out users controller
+18. 
