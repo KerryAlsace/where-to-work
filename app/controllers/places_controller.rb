@@ -15,20 +15,32 @@ class PlacesController < ApplicationController
   end
 
   def create
-    @place = Place.new
-    if @place.save(place_params)
-      flash[:notice] = "Successfully created place"
+    if current_user
+      @place = Place.new
+      if @place.save(place_params)
+        flash[:notice] = "Successfully created place"
 
-      redirect_to place_path(@place)
+        redirect_to place_path(@place)
+      else
+        flash[:alert] = "Could not create place"
+
+        render :new
+      end
     else
-      flash[:alert] = "Could not create place"
+      flash[:alert] = "Must be logged in to do that"
 
-      render :new
+      redirect_to login_path
     end
   end
 
   def show
-    define_place
+    if current_user
+      define_place
+    else
+      flash[:alert] = "Must be logged in to do that"
+
+      redirect_to login_path
+    end
   end
 
   def edit
@@ -36,23 +48,36 @@ class PlacesController < ApplicationController
   end
 
   def update
-    define_place
-    if @place.update(place_params)
-      flash[:notice] = "Successfully updated place"
+    if current_user
+      define_place
+      if @place.update(place_params)
+        flash[:notice] = "Successfully updated place"
 
-      redirect_to place_path(@place)
+        redirect_to place_path(@place)
+      else
+        flash[:alert] = "Could not update place"
+
+        render :edit
+      end
     else
-      flash[:alert] = "Could not update place"
+      flash[:alert] = "Must be logged in to do that"
 
-      render :edit
+      redirect_to login_path
     end
   end
 
   def destroy
-    define_place
-    @place.destroy
+    if current_user
+      define_place
+      @place.destroy
+      flash[:notice] = "Successfully deleted place"
 
-    redirect_to places_path
+      redirect_to places_path
+    else
+      flash[:alert] = "Must be logged in to do that"
+
+      redirect_to login_path
+    end
   end
 
   private

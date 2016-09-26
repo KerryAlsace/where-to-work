@@ -1,7 +1,13 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.all
+    if current_user
+      @users = User.all
+    else
+      flash[:alert] = "Must be logged in to do that"
+
+      redirect_to login_path
+    end
   end
 
   def new
@@ -9,20 +15,32 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new
-    if @user.save(user_params)
-    flash[:notice] = "Successfully created user"
+    if current_user
+      @user = User.new
+      if @user.save(user_params)
+      flash[:notice] = "Successfully created user"
 
-      redirect_to user_path(@user)
+        redirect_to user_path(@user)
+      else
+        flash[:alert] = "Could not create user"
+
+        render :new
+      end
     else
-      flash[:alert] = "Could not create user"
+      flash[:alert] = "Must be logged in to do that"
 
-      render :new
+      redirect_to login_path
     end
   end
 
   def show
-    define_user
+    if current_user
+      define_user
+    else
+      flash[:alert] = "Must be logged in to do that"
+
+      redirect_to login_path
+    end
   end
 
   def edit
@@ -30,23 +48,36 @@ class UsersController < ApplicationController
   end
 
   def update
-    define_user
-    if @user.update(user_params)
-      flash[:notice] = "Successfully updated user"
+    if current_user
+      define_user
+      if @user.update(user_params)
+        flash[:notice] = "Successfully updated user"
 
-      redirect_to user_path(@user)
+        redirect_to user_path(@user)
+      else
+        flash[:alert] = "Could not update user"
+
+        render :edit
+      end
     else
-      flash[:alert] = "Could not update user"
+      flash[:alert] = "Must be logged in to do that"
 
-      render :edit
+      redirect_to login_path
     end
   end
 
   def destroy
-    define_user
-    @user.destroy
+    if current_user
+      define_user
+      @user.destroy
+      flash[:notice] = "Successfully deleted user"
 
-    redirect_to root
+      redirect_to root
+    else
+      flash[:alert] = "Must be logged in to do that"
+
+      redirect_to login_path
+    end
   end
 
   private
