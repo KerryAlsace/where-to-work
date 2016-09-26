@@ -40,26 +40,34 @@
 36. `rails g pundit:policy place`
 37. `rails g migration AddRoleToUsers role:integer`
 38. `rails db:migrate`
-39. Maybe add some methods from flatiron-bnb-methods lab for friendships
-40. 
+39. `rails g pundit:policy user`
+40. Maybe add some methods from flatiron-bnb-methods lab for friendships
+41. `rails g model friendships user_id:integer place_id:integer`
+42. Add these associations:
 
-Notes
--user_id
-belongs_to :user
-has_many :viewers
-has_many :readers, through: :viewers, source: :user
+Places
+  schema: user_id
+  belongs_to :user
+  has_many :friendships
+  has_many :shared_places, through: :friendships, source: :user
 
-User
-has_many :notes
-has_many :viewers
-has_many :readable, through: :viewers, source: :note
+Users
+  has_many :places
+  has_many :friendships
+  has_many :shared_places, through: :friendships, source: :place
 
-Viewers
--note_id
--user_id
-belongs_to :user
-belongs_to :note
+Friendships
+  schema: user_id
+  schema: place_id
+  belongs_to :user
+  belongs_to :place
 
+43. `rails db:migrate`
+44. 
+
+abilities:
+
+user.admin? or place.user = current_user or place.user.shared_places.include?(current_user)
 
 
 
