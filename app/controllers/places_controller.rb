@@ -16,7 +16,7 @@ class PlacesController < ApplicationController
 
   def create
     if current_user
-      @place = Place.new
+      @place = current_user.places.build
       @neighborhoods = Place.all.collect do |place|
         place.neighborhood
       end.uniq
@@ -32,6 +32,7 @@ class PlacesController < ApplicationController
         redirect_to place_path(@place)
       else
         flash[:alert] = "Could not create place"
+        flash[:notice] = @place.errors.full_messages
 
         render :new
       end
