@@ -39,4 +39,31 @@
 35. `rails g pundit:install`
 36. `rails g pundit:policy place`
 37. `rails g migration AddRoleToUsers role:integer`
-38. Maybe add some methods from flatiron-bnb-methods lab for friendships
+38. `rails db:migrate`
+39. Maybe add some methods from flatiron-bnb-methods lab for friendships
+40. 
+
+Notes
+-user_id
+belongs_to :user
+has_many :viewers
+has_many :readers, through: :viewers, source: :user
+
+User
+has_many :notes
+has_many :viewers
+has_many :readable, through: :viewers, source: :note
+
+Viewers
+-note_id
+-user_id
+belongs_to :user
+belongs_to :note
+
+
+
+
+
+
+
+
