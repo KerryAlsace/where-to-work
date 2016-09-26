@@ -63,7 +63,8 @@ Friendships
   belongs_to :place
 
 43. `rails db:migrate`
-44. 
+44. Didn't like that ^ association, didn't work as expected
+45. 
 
 abilities:
 
