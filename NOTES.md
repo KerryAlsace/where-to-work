@@ -33,21 +33,8 @@
 29. fill out sessions controller
 30. revise root_path: create welcome/index.html.erb
 31. `rails g controller Welcome`
-
-@neighborhoods = Place.all.collect do |place|
-  place.neighborhood
-end.uniq
-@place_types = Place.all.collect do |place|
-  place.place_type
-end.uniq
-@things_available_for_purchase = Place.all.collect do |place|
-  place.available_for_purchase
-end.uniq
-
-collection_select(:post, :author_id, Author.all, :id, :name_with_initial, prompt: true)
-
-<%= f.label :place_type %><br>
-  <%= f.options_for_select(["Bar", "Coffee Shop", "Library", "Park", "Bar/Coffee Shop Combo", "Co-working Space", "Other"]) %><br><br>
-
-  <%= f.label :new_neighborhood %>
-  <%= f.text_area :new_neighborhood %>
+32. fill out place views
+33. add pundit gem
+34. add `include Pundit` to application controller
+35. `rails g pundit:install`
+36. `rails g pundit:policy place`
