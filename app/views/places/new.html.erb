@@ -1,2 +1,29 @@
-<h1>Places#new</h1>
-<p>Find me in app/views/places/new.html.erb</p>
+<h1>Create a New Place</h1>
+
+<%= form_for @place do |f| %>
+  <%= f.label :name %>:<br>
+  <%= f.text_field :name %><br><br>
+
+  <%= f.label :address %>:<br>
+  <%= f.text_field :address %><br><br>
+
+  <%= f.label :comments %><br>
+  <%= f.text_area :comments %><br><br>
+
+  <%= f.label :wifi, "Has wifi?" %>
+  <%= f.check_box :wifi %>
+
+  <%= f.label :wifi_quality %>
+  <%= f.select :wifi_quality, [['Amazing, can stream movies', 4], ['Works for what I need', 3], ['Works, but cuts in and out', 2], ['Barely works', 1]], {include_blank: true} %><br><br>
+
+  <%= f.label :public_restroom, "Has a restroom?" %>
+  <%= f.check_box :public_restroom %>
+
+  <%= f.label :restroom_cleanliness %>
+  <%= f.select :restroom_cleanliness, [['Super clean', 4], ['Average', 3], ['Not great, but useable', 2], ['Dirty, missing toilet paper, etc.', 1]], {include_blank: true} %><br><br>
+
+  <%= f.label :costs_money, "Costs money?" %>
+  <%= f.check_box :costs_money %><br><br>
+
+  <%= f.submit %>
+<% end %>

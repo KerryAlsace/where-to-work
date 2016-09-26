@@ -17,6 +17,15 @@ class PlacesController < ApplicationController
   def create
     if current_user
       @place = Place.new
+      @neighborhoods = Place.all.collect do |place|
+        place.neighborhood
+      end.uniq
+      @place_types = Place.all.collect do |place|
+        place.place_type
+      end.uniq
+      @things_available_for_purchase = Place.all.collect do |place|
+        place.available_for_purchase
+      end.uniq
       if @place.save(place_params)
         flash[:notice] = "Successfully created place"
 

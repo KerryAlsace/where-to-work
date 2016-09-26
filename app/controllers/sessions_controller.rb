@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       flash[:notice] = "Log in successful"
 
-      redirect_to root_path
+      redirect_to places_path
     else
       flash[:alert] = "Log in unsuccessful"
 
