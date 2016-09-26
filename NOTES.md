@@ -38,3 +38,5 @@
 34. add `include Pundit` to application controller
 35. `rails g pundit:install`
 36. `rails g pundit:policy place`
+37. `rails g migration AddRoleToUsers role:integer`
+38. Maybe add some methods from flatiron-bnb-methods lab for friendships
