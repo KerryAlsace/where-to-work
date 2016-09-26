@@ -31,4 +31,5 @@
   post '/sessions' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 29. fill out sessions controller
-30. 
+30. revise root_path: create welcome/index.html.erb
+31. `rails g controller Welcome`

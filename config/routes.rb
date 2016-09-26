@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :users, :places
 
-  root 'places#index'
+  root 'welcome#index'
 end
 
   ## add this when adding user friends?
