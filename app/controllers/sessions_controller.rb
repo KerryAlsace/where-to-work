@@ -4,8 +4,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(username: params["login_path"][:username])
-    if user && user.authenticate(params["login_path"][:password])
+    user = User.find_by(username: params["/login"][:username])
+    if user && user.authenticate(params["/login"][:password])
       session[:user_id] = user.id
       flash[:notice] = "Log in successful"
 
