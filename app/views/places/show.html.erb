@@ -1,2 +1,12 @@
-<h1>Places#show</h1>
-<p>Find me in app/views/places/show.html.erb</p>
+<h1><%= @place.name %> </h1>
+
+Type: <%= @place.place_type %><br>
+Neighborhood: <%= @place.neighborhood %><br>
+Address: <%= @place.address %><br>
+Comments: <%= @place.comments %><br>
+Has wifi? <%= @place.wifi %>
+Wifi quality: <%= @place.wifi_quality %><br>
+Has restroom? <%= @place.public_restroom %>
+Restroom cleanliness: <%= @place.restroom_cleanliness %><br>
+Costs money? <%= @place.costs_money %>
+Things available for purchase: <%= @place.available_for_purchase %><br>

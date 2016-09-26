@@ -12,20 +12,21 @@ class PlacesController < ApplicationController
 
   def new
     @place = Place.new
+    @neighborhoods = Place.all.collect do |place|
+      place.neighborhood
+    end.uniq
+    @place_types = Place.all.collect do |place|
+      place.place_type
+    end.uniq
+    @things_available_for_purchase = Place.all.collect do |place|
+      place.available_for_purchase
+    end.uniq
   end
 
   def create
     if current_user
-      @place = current_user.places.build
-      @neighborhoods = Place.all.collect do |place|
-        place.neighborhood
-      end.uniq
-      @place_types = Place.all.collect do |place|
-        place.place_type
-      end.uniq
-      @things_available_for_purchase = Place.all.collect do |place|
-        place.available_for_purchase
-      end.uniq
+      @place = current_user.places.build(place_params)
+
       if @place.save(place_params)
         flash[:notice] = "Successfully created place"
 
