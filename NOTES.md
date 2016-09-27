@@ -75,7 +75,7 @@ Shared_places schema
 48. `rails db:migrate`
 49. `rails db:seed`
 50. `rails c`
-51. 
+51. `rails g controller Neighborhoods`
 
 
 abilities:
