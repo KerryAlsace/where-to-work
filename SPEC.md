@@ -3,10 +3,11 @@
 Specs:
 - [x] Using Ruby on Rails for the project
 - [x] Include at least one has_many relationship (x has_many y e.g. User has_many Recipes) 
-  User has many places
+  ~User has many places
 - [x] Include at least one belongs_to relationship (x belongs_to y e.g. Post belongs_to User)
-  Place belongs to User
-- [ ] Include at least one has_many through relationship (x has_many y through z e.g. Recipe has_many Items through Ingredients)
+  ~Place belongs to User
+- [x] Include at least one has_many through relationship (x has_many y through z e.g. Recipe has_many Items through Ingredients)
+  ~Place has_many :friends, through: :shared_places, class_name: 'User'
 - [ ] The "through" part of the has_many through includes at least one user submittable attribute (attribute_name e.g. ingredients.quantity)
 - [ ] Include reasonable validations for simple model objects (list of model objects with validations e.g. User, Recipe, Ingredient, Item)
 - [ ] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)

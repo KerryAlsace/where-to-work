@@ -3,6 +3,9 @@ class PlacesController < ApplicationController
   def index
     if current_user
       @places = Place.all
+      if current_user.shared_places 
+        @shared_places = current_user.shared_places
+      end
     else
       flash[:alert] = "Must be logged in to do that"
 
@@ -11,7 +14,7 @@ class PlacesController < ApplicationController
   end
 
   def new
-    @place = Place.new
+    @place = current_user.places.build
     @neighborhoods = Place.all.collect do |place|
       place.neighborhood
     end.uniq
@@ -25,12 +28,12 @@ class PlacesController < ApplicationController
 
   def create
     if current_user
-      @place = current_user.places.build(place_params)
+      @place = current_user.places.build(params)
 
-      if @place.save(place_params)
+      if @place.save(params)
         flash[:notice] = "Successfully created place"
 
-        redirect_to place_path(@place)
+        redirect_to user_place_path(@place)
       else
         flash[:alert] = "Could not create place"
         flash[:notice] = @place.errors.full_messages
@@ -61,10 +64,10 @@ class PlacesController < ApplicationController
   def update
     if current_user
       define_place
-      if @place.update(place_params)
+      if @place.update(params)
         flash[:notice] = "Successfully updated place"
 
-        redirect_to place_path(@place)
+        redirect_to user_place_path(@place)
       else
         flash[:alert] = "Could not update place"
 
@@ -83,7 +86,7 @@ class PlacesController < ApplicationController
       @place.destroy
       flash[:notice] = "Successfully deleted place"
 
-      redirect_to places_path
+      redirect_to user_places_path
     else
       flash[:alert] = "Must be logged in to do that"
 
@@ -96,8 +99,8 @@ class PlacesController < ApplicationController
       @place = Place.find(params[:id])
     end
 
-    def place_params
-      params.require(:place).permit(:name, :type, :neighborhood, :address, :comments, :wifi, :wifi_quality, :public_restroom, :restroom_cleanliness, :costs_money, :available_for_purchase, :user_id)
-    end
+    # def place_params
+    #   params.require(:place).permit(:name, :type, :neighborhood, :address, :comments, :wifi, :wifi_quality, :public_restroom, :restroom_cleanliness, :costs_money, :available_for_purchase, :user_id, :shared_place)
+    # end
 
 end

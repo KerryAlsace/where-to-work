@@ -25,5 +25,8 @@
   <%= f.label :costs_money, "Costs money?" %>
   <%= f.check_box :costs_money %><br><br>
 
+  <%= f.label :shared_place, "Share with friend?" %>
+  <%= f.collection_check_boxes(:shared_place, :friend_ids, User.all, :id, :username) %>
+
   <%= f.submit %>
 <% end %>

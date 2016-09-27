@@ -1,6 +1,6 @@
 <% if current_user %>
   Logged in as <%= current_user.username %> 
-  <%= link_to 'Make a New Place', new_place_path %> 
+  <%= link_to 'Make a New Place', new_user_place_path(current_user.id) %> 
   <%= link_to 'Log Out', logout_path %>
 <% else %>
   <%= link_to 'Sign In', login_path %> 
