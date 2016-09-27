@@ -9,13 +9,11 @@ Rails.application.routes.draw do
   end
   resources :places
 
+  resources :neighborhoods, only: [:index, :show]
+
   root 'welcome#index'
 end
 
-  ## add this when adding user friends?
-  # resources :users do
-  #   resources :friends
-  # end
 
 #           login GET    /login(.:format)                          sessions#new
 #                 POST   /login(.:format)                          sessions#create
@@ -44,4 +42,6 @@ end
 #                 PATCH  /places/:id(.:format)                     places#update
 #                 PUT    /places/:id(.:format)                     places#update
 #                 DELETE /places/:id(.:format)                     places#destroy
+#   neighborhoods GET    /neighborhoods(.:format)                  neighborhoods#index
+#    neighborhood GET    /neighborhoods/:id(.:format)              neighborhoods#show
 #            root GET    /                                         welcome#index
