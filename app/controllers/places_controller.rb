@@ -30,11 +30,12 @@ class PlacesController < ApplicationController
     if current_user
       @place = current_user.places.build(place_params)
       @place.creator_id = current_user.id
+      @place.neighborhood = Neighborhood.find(params[:place][:neighborhood_id].to_i)
 
       if @place.save(place_params)
         flash[:notice] = "Successfully created place"
 
-        redirect_to user_place_path(@place)
+        redirect_to user_place_path(current_user, @place)
       else
         flash[:alert] = "Could not create place"
         flash[:notice] = @place.errors.full_messages
@@ -101,7 +102,7 @@ class PlacesController < ApplicationController
     end
 
     def place_params
-      params.require(:place).permit(:name, :type, :neighborhood, :address, :comments, :wifi, :wifi_quality, :public_restroom, :restroom_cleanliness, :costs_money, :available_for_purchase, :user_id, :friend_ids)
+      params.require(:place).permit(:name, :type, :neighborhood, :address, :comments, :wifi, :wifi_quality, :public_restroom, :restroom_cleanliness, :costs_money, :available_for_purchase, :user_id, :friend_ids, :neighborhood_id)
     end
 
 end

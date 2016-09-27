@@ -1,7 +1,7 @@
 <h1><%= @place.name %> </h1>
 
 Type: <%= @place.place_type %><br>
-Neighborhood: <%= @place.neighborhood %><br>
+Neighborhood: <%= link_to @place.neighborhood.name, neighborhood_path(@place.neighborhood) %><br>
 Address: <%= @place.address %><br>
 Comments: <%= @place.comments %><br>
 Has wifi? <%= @place.wifi %>
