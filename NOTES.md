@@ -44,27 +44,39 @@
 40. Maybe add some methods from flatiron-bnb-methods lab for friendships
 41. `rails g model friendships user_id:integer place_id:integer`
 42. Add these associations:
+43. Didn't like associations, `rails d model friendships user_id:integer place_id:integer`
+44. `rails g model shared_places friend_id:integer place_id:integer`
+45. `rails db:drop`
+46. `rails g model neighborhood name:string`
+47. Add below associations
 
-Places
-  schema: user_id
-  belongs_to :user
-  has_many :friendships
-  has_many :shared_places, through: :friendships, source: :user
+User
+  has_many :places, foreign_key: 'creator_id'
+  has_many :shared_places, class_name: 'Place' foreign_key: 'friend_id'
 
-Users
+Place
+  belongs_to :creator, class_name 'User'
+  has_many :friends, through: :shared_places, class_name: 'User'
+  belongs_to :neighborhood
+
+Neighborhood
   has_many :places
-  has_many :friendships
-  has_many :shared_places, through: :friendships, source: :place
 
-Friendships
-  schema: user_id
-  schema: place_id
-  belongs_to :user
-  belongs_to :place
+Place schema
+  creator_id
+  neighborhood_id
 
-43. `rails db:migrate`
-44. Didn't like that ^ association, didn't work as expected
-45. 
+Neighborhood schema
+
+Shared_places schema
+  place_id
+  friend_id
+
+48. `rails db:migrate`
+49. `rails db:seed`
+50. `rails c`
+51. 
+
 
 abilities:
 
