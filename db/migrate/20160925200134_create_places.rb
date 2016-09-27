@@ -2,7 +2,6 @@ class CreatePlaces < ActiveRecord::Migration[5.0]
   def change
     create_table :places do |t|
       t.string :name
-      t.string :place_type
       t.string :neighborhood
       t.string :address
       t.text :comments
@@ -11,7 +10,6 @@ class CreatePlaces < ActiveRecord::Migration[5.0]
       t.boolean :public_restroom
       t.string :restroom_cleanliness
       t.boolean :costs_money
-      t.string :available_for_purchase
       t.integer :creator_id
       t.integer :neighborhood_id
 

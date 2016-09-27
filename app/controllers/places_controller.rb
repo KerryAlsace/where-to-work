@@ -15,15 +15,6 @@ class PlacesController < ApplicationController
 
   def new
     @place = current_user.places.build
-    @neighborhoods = Place.all.collect do |place|
-      place.neighborhood
-    end.uniq
-    @place_types = Place.all.collect do |place|
-      place.place_type
-    end.uniq
-    @things_available_for_purchase = Place.all.collect do |place|
-      place.available_for_purchase
-    end.uniq
   end
 
   def create
@@ -102,7 +93,7 @@ class PlacesController < ApplicationController
     end
 
     def place_params
-      params.require(:place).permit(:name, :type, :neighborhood, :address, :comments, :wifi, :wifi_quality, :public_restroom, :restroom_cleanliness, :costs_money, :available_for_purchase, :user_id, :friend_ids, :neighborhood_id)
+      params.require(:place).permit(:name, :neighborhood, :address, :comments, :wifi, :wifi_quality, :public_restroom, :restroom_cleanliness, :costs_money, :user_id, :friend_ids, :neighborhood_id, :creator_id)
     end
 
 end

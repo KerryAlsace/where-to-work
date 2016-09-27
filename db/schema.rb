@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20160926180254) do
 
   create_table "places", force: :cascade do |t|
     t.string   "name"
-    t.string   "place_type"
     t.string   "neighborhood"
     t.string   "address"
     t.text     "comments"
@@ -29,11 +28,10 @@ ActiveRecord::Schema.define(version: 20160926180254) do
     t.boolean  "public_restroom"
     t.string   "restroom_cleanliness"
     t.boolean  "costs_money"
-    t.string   "available_for_purchase"
     t.integer  "creator_id"
     t.integer  "neighborhood_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "shared_places", force: :cascade do |t|
