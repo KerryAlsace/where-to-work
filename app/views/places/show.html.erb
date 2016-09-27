@@ -7,4 +7,8 @@ Has wifi? <%= @place.wifi %>
 Wifi quality: <%= @place.wifi_quality %><br>
 Has restroom? <%= @place.public_restroom %>
 Restroom cleanliness: <%= @place.restroom_cleanliness %><br>
-Costs money? <%= @place.costs_money %>
+Costs money? <%= @place.costs_money %><br>
+
+<br>
+
+<%= link_to "Edit Place", edit_user_place_path(@place.creator_id, @place) %>
