@@ -28,9 +28,10 @@ class PlacesController < ApplicationController
 
   def create
     if current_user
-      @place = current_user.places.build(params)
+      @place = current_user.places.build(place_params)
+      @place.creator_id = current_user.id
 
-      if @place.save(params)
+      if @place.save(place_params)
         flash[:notice] = "Successfully created place"
 
         redirect_to user_place_path(@place)
@@ -64,7 +65,7 @@ class PlacesController < ApplicationController
   def update
     if current_user
       define_place
-      if @place.update(params)
+      if @place.update(place_params)
         flash[:notice] = "Successfully updated place"
 
         redirect_to user_place_path(@place)
@@ -99,8 +100,8 @@ class PlacesController < ApplicationController
       @place = Place.find(params[:id])
     end
 
-    # def place_params
-    #   params.require(:place).permit(:name, :type, :neighborhood, :address, :comments, :wifi, :wifi_quality, :public_restroom, :restroom_cleanliness, :costs_money, :available_for_purchase, :user_id, :shared_place)
-    # end
+    def place_params
+      params.require(:place).permit(:name, :type, :neighborhood, :address, :comments, :wifi, :wifi_quality, :public_restroom, :restroom_cleanliness, :costs_money, :available_for_purchase, :user_id, :friend_ids)
+    end
 
 end
