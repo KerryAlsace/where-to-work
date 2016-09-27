@@ -1,2 +1,7 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<% if current_user == @user %>
+  <h1>Edit Your Username or Password, <%= @user.username %></h1>
+  <%= render 'users/form' %>
+<% elsif current_user.admin? %>
+  <%= render 'users/admin' %>
+<% end %>
+

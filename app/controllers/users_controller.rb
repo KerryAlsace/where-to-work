@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
 
   def index
-    if current_user
+    if current_user.admin?
       @users = User.all
     else
-      flash[:alert] = "Must be logged in to do that"
+      flash[:alert] = "Must be an admin to do that"
 
-      redirect_to login_path
+      redirect_to root_path
     end
   end
 
@@ -15,36 +15,36 @@ class UsersController < ApplicationController
   end
 
   def create
-    if current_user
-      @user = User.new
-      if @user.save(user_params)
-      flash[:notice] = "Successfully created user"
+    @user = User.new
+    if @user.save(user_params)
+    flash[:notice] = "Successfully created user"
 
-        redirect_to user_path(@user)
-      else
-        flash[:alert] = "Could not create user"
-
-        render :new
-      end
+      redirect_to user_path(@user)
     else
-      flash[:alert] = "Must be logged in to do that"
+      flash[:alert] = @user.errors.full_messages
 
-      redirect_to login_path
+      render :new
     end
   end
 
   def show
-    if current_user
+    if current_user.admin?
       define_user
     else
-      flash[:alert] = "Must be logged in to do that"
+      flash[:alert] = "Must be an admin to do that"
 
-      redirect_to login_path
+      redirect_to root_path
     end
   end
 
   def edit
-    define_user
+    if current_user
+      define_user
+    else
+      flash[:alert] = "You must be logged in to do that"
+
+      redirect_to root_path
+    end
   end
 
   def update
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
 
         redirect_to user_path(@user)
       else
-        flash[:alert] = "Could not update user"
+        flash[:alert] = @user.errors.full_messages
 
         render :edit
       end
@@ -69,10 +69,14 @@ class UsersController < ApplicationController
   def destroy
     if current_user
       define_user
-      @user.destroy
-      flash[:notice] = "Successfully deleted user"
+      if @user.destroy
+        flash[:notice] = "Successfully deleted user"
 
-      redirect_to root
+        redirect_to root_path
+      else
+        flash[:alert] = @user.errors.full_messages
+
+        redirect_to root_path
     else
       flash[:alert] = "Must be logged in to do that"
 
@@ -86,7 +90,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:username, :password, :password_confirmation)
+      params.require(:user).permit(:username, :password, :password_confirmation, :role)
     end
 
 end
