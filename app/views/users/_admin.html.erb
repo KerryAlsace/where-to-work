@@ -6,7 +6,7 @@
   <%= f.text_field :username %>
 
   <%= f.label :role, "Admin" %>
-  <%= f.check_box :role %>
+  <%= f.check_box("role", {}, "admin", "user") %>
 
   <%= f.submit "Save Edits" %>
 <% end %>

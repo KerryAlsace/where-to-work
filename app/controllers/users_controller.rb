@@ -77,6 +77,7 @@ class UsersController < ApplicationController
         flash[:alert] = @user.errors.full_messages
 
         redirect_to root_path
+      end
     else
       flash[:alert] = "Must be logged in to do that"
 
