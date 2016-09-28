@@ -4,13 +4,8 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
-  # get '/auth/google_oauth2/callback' => 'sessions#create'
-
-  # get '/auth/:provider/callback' => 'sessions#create'
-
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
-
 
   resources :users do
     resources :places
@@ -26,6 +21,8 @@ end
 #           login GET    /login(.:format)                          sessions#new
 #                 POST   /login(.:format)                          sessions#create
 #          logout GET    /logout(.:format)                         sessions#destroy
+#                 GET    /auth/:provider/callback(.:format)        sessions#create
+#    auth_failure GET    /auth/failure(.:format)                   redirect(301, /)
 #     user_places GET    /users/:user_id/places(.:format)          places#index
 #                 POST   /users/:user_id/places(.:format)          places#create
 #  new_user_place GET    /users/:user_id/places/new(.:format)      places#new

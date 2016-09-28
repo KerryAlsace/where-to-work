@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def index
-    if current_user.admin?
+    if current_user && current_user.admin?
       @users = User.all
     else
       flash[:alert] = "Must be an admin to do that"
@@ -15,11 +15,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new
-    if @user.save(user_params)
-    flash[:notice] = "Successfully created user"
+    @user = User.new(user_params)
+    if @user.save
+      flash[:notice] = "Successfully created user"
 
-      redirect_to user_path(@user)
+      redirect_to root_path
     else
       flash[:alert] = @user.errors.full_messages
 
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    if current_user.admin?
+    if current_user && (current_user.admin? || (current_user.id == params[:id]))
       define_user
     else
       flash[:alert] = "Must be an admin to do that"
