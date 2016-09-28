@@ -54,6 +54,11 @@
 50. `rails c`
 51. `rails g controller Neighborhoods`
 52. Use 'https://richonrails.com/articles/google-authentication-in-ruby-on-rails' to help add oauth
+53. Refractor and add authorization
+
+Todo:
+  -Users can't create or edit or delete other users' places (unless admin)
+  -oauth users can't edit themselves
 
 
 abilities:
