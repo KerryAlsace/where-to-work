@@ -12,12 +12,18 @@ Specs:
 - [ ] Include reasonable validations for simple model objects (list of model objects with validations e.g. User, Recipe, Ingredient, Item)
 - [ ] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
 - [ ] Include a nested form writing to an associated model using a custom attribute writer (form URL, model name e.g. /recipe/new, Item)
-- [ ] Include signup (how e.g. Devise)
-- [ ] Include login (how e.g. Devise)
-- [ ] Include logout (how e.g. Devise)
-- [ ] Include third party signup/login (how e.g. Devise/OmniAuth)
-- [ ] Include nested resource show or index (URL e.g. users/2/recipes)
-- [ ] Include nested resource "new" form (URL e.g. recipes/1/ingredients)
+- [x] Include signup (how e.g. Devise)
+  ~Users can sign up
+- [x] Include login (how e.g. Devise)
+  ~Registered users can log in
+- [x] Include logout (how e.g. Devise)
+  ~Users can log in
+- [x] Include third party signup/login (how e.g. Devise/OmniAuth)
+  ~Used omniauth and omniauth-google-oauth2 gems for oauth signup/login
+- [x] Include nested resource show or index (URL e.g. users/2/recipes)
+  ~users/:user_id/places/:id
+- [x] Include nested resource "new" form (URL e.g. recipes/1/ingredients)
+  ~users/:user_id/places/new
 - [ ] Include form display of validation errors (form URL e.g. /recipes/new)
 
 Confirm:
