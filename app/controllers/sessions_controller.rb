@@ -19,8 +19,10 @@ class SessionsController < ApplicationController
 
   def create
     if auth
-      user = User.find_or_create_by(:uid => auth['uid']) do |u|
+      user = User.find_or_create_by(uid: auth[:uid][0, 8]) do |u|
         u.username = auth['info']['name']
+        u.password = "placeholder"
+        u.role = "user"
       end
       session[:user_id] = user.id
     else
