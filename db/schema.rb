@@ -44,9 +44,10 @@ ActiveRecord::Schema.define(version: 20160926180254) do
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "password_digest"
+    t.integer  "uid",             limit: 8
     t.integer  "role"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
 end
