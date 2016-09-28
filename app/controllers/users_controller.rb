@@ -21,6 +21,7 @@ class UsersController < ApplicationController
       flash[:notice] = "Successfully created user"
 
       redirect_to root_path
+      # redirect_to user_path(@user)
     else
       flash[:alert] = @user.errors.full_messages
 
