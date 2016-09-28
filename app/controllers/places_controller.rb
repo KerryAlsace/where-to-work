@@ -97,22 +97,3 @@ class PlacesController < ApplicationController
     end
 
 end
-
-
-# <% if @shared_places %>
-#       <% @shared_places.each do |shared_place| %>
-#       <tr>
-#         <td><%= shared_place.place.name %></td>
-#         <td><%= shared_place.place.place_type %></td>
-#         <td><%= shared_place.place.neighborhood %></td>
-#         <td><%= shared_place.place.address %></td>
-#         <td><%= shared_place.place.comments %></td>
-#         <td><%= shared_place.place.wifi %></td>
-#         <td><%= shared_place.place.wifi_quality %></td>
-#         <td><%= shared_place.place.public_restroom %></td>
-#         <td><%= shared_place.place.restroom_cleanliness %></td>
-#         <td><%= shared_place.place.costs_money %></td>
-#         <td><%= sharedplace.place.available_for_purchase %></td>
-#       </tr>
-#       <% end %>
-#     <% end %>

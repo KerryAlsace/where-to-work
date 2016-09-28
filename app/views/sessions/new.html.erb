@@ -1,5 +1,9 @@
 <h1>Log In Here</h1>
 
+<%= link_to "Click here", "/auth/google_oauth2" %> to log in with your Google account <br><br>
+
+Or log in with your username and password: <br><br>
+
 <%= form_for login_path do |f| %>
   
   <%= f.label :username %>:

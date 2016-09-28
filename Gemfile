@@ -30,6 +30,12 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Pundit for user authorization
 gem 'pundit'
 
+# Add oauth for login
+gem 'omniauth'
+
+# Add google oauth2
+gem "omniauth-google-oauth2"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

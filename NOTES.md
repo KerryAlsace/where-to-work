@@ -49,33 +49,16 @@
 45. `rails db:drop`
 46. `rails g model neighborhood name:string`
 47. Add below associations
-
-User
-  has_many :places, foreign_key: 'creator_id'
-  has_many :shared_places, class_name: 'Place' foreign_key: 'friend_id'
-
-Place
-  belongs_to :creator, class_name 'User'
-  has_many :friends, through: :shared_places, class_name: 'User'
-  belongs_to :neighborhood
-
-Neighborhood
-  has_many :places
-
-Place schema
-  creator_id
-  neighborhood_id
-
-Neighborhood schema
-
-Shared_places schema
-  place_id
-  friend_id
-
 48. `rails db:migrate`
 49. `rails db:seed`
 50. `rails c`
 51. `rails g controller Neighborhoods`
+52. Use 'https://richonrails.com/articles/google-authentication-in-ruby-on-rails' to help add oauth
+53. Refractor and add authorization
+
+Todo:
+  -Users can't create or edit or delete other users' places (unless admin)
+  -oauth users can't edit themselves
 
 
 abilities:
