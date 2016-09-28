@@ -97,7 +97,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:username, :password, :password_confirmation, :role, places_attributes: [{:id, :name, :neighborhood, :address, :comments, :wifi, :wifi_quality, :public_restroom, :restroom_cleanliness, :costs_money, :user_id, :friend_ids, :neighborhood_id, :creator_id}])
+      params.require(:user).permit(:username, :password, :password_confirmation, :role, :user_id, places_attributes: {"name"=>"New Place", "neighborhood_id"=>"5", "address"=>"sdf", "comments"=>"", "wifi"=>"0", "wifi_quality"=>"", "public_restroom"=>"0", "restroom_cleanliness"=>"", "costs_money"=>"1", "friend_ids"=>["", "3", "7"]})
     end
 
 end
@@ -108,3 +108,5 @@ end
 # params.require(:user).permit(:username, :password, :password_confirmation, :role, places_attributes: [{:id, :name, :neighborhood, :address, :comments, :wifi, :wifi_quality, :public_restroom, :restroom_cleanliness, :costs_money, :user_id, :friend_ids, :neighborhood_id, :creator_id}])
 
 # params.require(:user).permit(:username, :password, :password_confirmation, :role, places_attributes: [{"id", "name", "neighborhood", "address", "comments", "wifi", "wifi_quality", "public_restroom", "restroom_cleanliness", "costs_money", "user_id", "friend_ids", "neighborhood_id", "creator_id"}])
+
+# params.require(:user).permit(:username, :password, :password_confirmation, :role, :user_id, {:places_attributes => {:id, :name, :neighborhood, :address, :comments, :wifi, :wifi_quality, :public_restroom, :restroom_cleanliness, :costs_money, :user_id, :neighborhood_id, :creator_id, :friend_ids => []}})
