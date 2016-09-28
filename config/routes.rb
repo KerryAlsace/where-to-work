@@ -6,7 +6,10 @@ Rails.application.routes.draw do
 
   # get '/auth/google_oauth2/callback' => 'sessions#create'
 
-  get '/auth/:provider/callback' => 'sessions#create'
+  # get '/auth/:provider/callback' => 'sessions#create'
+
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
 
 
   resources :users do
