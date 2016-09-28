@@ -3,9 +3,9 @@ class PlacesController < ApplicationController
   def index
     if current_user
       @places = Place.all
-      if current_user.shared_places 
-        @shared_places = current_user.shared_places
-      end
+      # if current_user.shared_places 
+      #   @shared_places = current_user.shared_places
+      # end
     else
       flash[:alert] = "Must be logged in to do that"
 
@@ -14,22 +14,23 @@ class PlacesController < ApplicationController
   end
 
   def new
-    @place = current_user.places.build
+    @user = current_user
+    @place = @user.places.build
   end
 
   def create
     if current_user
-      @place = current_user.places.build(place_params)
+      @user = current_user
+      @place = @user.places.build(place_params)
       @place.creator_id = current_user.id
       @place.neighborhood = Neighborhood.find(params[:place][:neighborhood_id].to_i)
 
       if @place.save(place_params)
         flash[:notice] = "Successfully created place"
 
-        redirect_to user_place_path(current_user, @place)
+        redirect_to user_place_path(@user, @place)
       else
-        flash[:alert] = "Could not create place"
-        flash[:notice] = @place.errors.full_messages
+        flash[:alert] = @place.errors.full_messages
 
         render :new
       end
@@ -56,13 +57,14 @@ class PlacesController < ApplicationController
 
   def update
     if current_user
-      define_place
+      @user = User.find(params[:user_id])
+      @place = @user.places.find(params[:id])
       if @place.update(place_params)
         flash[:notice] = "Successfully updated place"
 
-        redirect_to user_place_path(@place)
+        redirect_to user_place_path(@user, @place)
       else
-        flash[:alert] = "Could not update place"
+        flash[:alert] = @place.errors.full_messages
 
         render :edit
       end
@@ -97,22 +99,3 @@ class PlacesController < ApplicationController
     end
 
 end
-
-
-# <% if @shared_places %>
-#       <% @shared_places.each do |shared_place| %>
-#       <tr>
-#         <td><%= shared_place.place.name %></td>
-#         <td><%= shared_place.place.place_type %></td>
-#         <td><%= shared_place.place.neighborhood %></td>
-#         <td><%= shared_place.place.address %></td>
-#         <td><%= shared_place.place.comments %></td>
-#         <td><%= shared_place.place.wifi %></td>
-#         <td><%= shared_place.place.wifi_quality %></td>
-#         <td><%= shared_place.place.public_restroom %></td>
-#         <td><%= shared_place.place.restroom_cleanliness %></td>
-#         <td><%= shared_place.place.costs_money %></td>
-#         <td><%= sharedplace.place.available_for_purchase %></td>
-#       </tr>
-#       <% end %>
-#     <% end %>

@@ -1,37 +1,37 @@
-<%= form_for @place do |f| %>
-  <%= f.label :name %>:<br>
-  <%= f.text_field :name %><br><br>
+<%= form_for @user do |f| %>
+    <%= f.fields_for :places_attributes do |place_form| %>
+      <%= place_form.label :name %>:<br>
+      <%= place_form.text_field :name %><br><br>
 
-  <%= f.label :neighborhood_id %>:<br>
-  <%= f.collection_select :neighborhood_id, Neighborhood.all, :id, :name %><br><br>
+      <%= place_form.label :neighborhood_id %>:<br>
+      <%= place_form.collection_select :neighborhood_id, Neighborhood.all, :id, :name %><br><br>
 
-  <%= f.label :address %>:<br>
-  <%= f.text_field :address %><br><br>
+      <%= place_form.label :address %>:<br>
+      <%= place_form.text_field :address %><br><br>
 
-  <%= f.label :comments %><br>
-  <%= f.text_area :comments %><br><br>
+      <%= place_form.label :comments %><br>
+      <%= place_form.text_area :comments %><br><br>
 
-  <%= f.label :wifi, "Has wifi?" %>
-  <%= f.check_box :wifi %>
+      <%= place_form.label :wifi, "Has wifi?" %>
+      <%= place_form.check_box :wifi %>
 
-  <%= f.label :wifi_quality %>
-  <%= f.select :wifi_quality, [['Amazing, can stream movies', 4], ['Works for what I need', 3], ['Works, but cuts in and out', 2], ['Barely works', 1]], {include_blank: true} %><br><br>
+      <%= place_form.label :wifi_quality %>
+      <%= place_form.select :wifi_quality, [['Amazing, can stream movies', 4], ['Works for what I need', 3], ['Works, but cuts in and out', 2], ['Barely works', 1]], {include_blank: true} %><br><br>
 
-  <%= f.label :public_restroom, "Has a restroom?" %>
-  <%= f.check_box :public_restroom %>
+      <%= place_form.label :public_restroom, "Has a restroom?" %>
+      <%= place_form.check_box :public_restroom %>
 
-  <%= f.label :restroom_cleanliness %>
-  <%= f.select :restroom_cleanliness, [['Super clean', 4], ['Average', 3], ['Not great, but useable', 2], ['Dirty, missing toilet paper, etc.', 1]], {include_blank: true} %><br><br>
+      <%= place_form.label :restroom_cleanliness %>
+      <%= place_form.select :restroom_cleanliness, [['Super clean', 4], ['Average', 3], ['Not great, but useable', 2], ['Dirty, missing toilet paper, etc.', 1]], {include_blank: true} %><br><br>
 
-  <%= f.label :costs_money, "Costs money?" %>
-  <%= f.check_box :costs_money %><br><br>
+      <%= place_form.label :costs_money, "Costs money?" %>
+      <%= place_form.check_box :costs_money %><br><br>
 
-  <%= f.label :shared_place, "Share with friend?" %><br />
-  <%= f.collection_check_boxes :friend_ids, User.all, :id, :username do |b| %>
-      <%= b.check_box %>
-      <%= b.label %><br><br>
-  <% end %>
-  
-
-  <%= f.submit %>
+      <%= place_form.label :shared_place, "Share with friend?" %><br />
+      <%= place_form.collection_check_boxes :friend_ids, User.all, :id, :username do |b| %>
+          <%= b.check_box %>
+          <%= b.label %><br><br>
+      <% end %>
+      <%= place_form.submit "Submit" %>
+    <% end %>
 <% end %>

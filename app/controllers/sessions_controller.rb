@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
 
       redirect_to places_path
     else
-      flash[:alert] = "Log in unsuccessful"
+      flash[:alert] = user.errors.full_messages
 
       render 'sessions#new'
     end

@@ -38,7 +38,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if current_user
+    if current_user && params[:user_id]
+      @user = User.find(params[:user_id])
+    elsif current_user
       define_user
     else
       flash[:alert] = "You must be logged in to do that"
@@ -48,7 +50,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    if current_user
+    if current_user && params[:user_id]
+      @user = User.find(params[:user_id])
+    elsif current_user
       define_user
       if @user.update(user_params)
         flash[:notice] = "Successfully updated user"
@@ -67,7 +71,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if current_user
+    if current_user && params[:user_id]
+      @user = User.find(params[:user_id])
+    elsif current_user
       define_user
       if @user.destroy
         flash[:notice] = "Successfully deleted user"
@@ -91,7 +97,14 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:username, :password, :password_confirmation, :role)
+      params.require(:user).permit(:username, :password, :password_confirmation, :role, places_attributes: [{:id, :name, :neighborhood, :address, :comments, :wifi, :wifi_quality, :public_restroom, :restroom_cleanliness, :costs_money, :user_id, :friend_ids, :neighborhood_id, :creator_id}])
     end
 
 end
+
+# params["user"]["places_attributes"]["0"]
+# <ActionController::Parameters {"name"=>"New Place", "neighborhood_id"=>"5", "address"=>"12345", "comments"=>"", "wifi"=>"1", "wifi_quality"=>"1", "public_restroom"=>"0", "restroom_cleanliness"=>"", "costs_money"=>"0", "friend_ids"=>["", "4", "5"]} permitted: false>
+
+# params.require(:user).permit(:username, :password, :password_confirmation, :role, places_attributes: [{:id, :name, :neighborhood, :address, :comments, :wifi, :wifi_quality, :public_restroom, :restroom_cleanliness, :costs_money, :user_id, :friend_ids, :neighborhood_id, :creator_id}])
+
+# params.require(:user).permit(:username, :password, :password_confirmation, :role, places_attributes: [{"id", "name", "neighborhood", "address", "comments", "wifi", "wifi_quality", "public_restroom", "restroom_cleanliness", "costs_money", "user_id", "friend_ids", "neighborhood_id", "creator_id"}])

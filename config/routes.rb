@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :places
   end
+  
   resources :places
 
   resources :neighborhoods, only: [:index, :show]
