@@ -29,9 +29,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    if current_user && (current_user.admin? || (current_user.id == params[:id]))
-      define_user
-    else
+    define_user
+    if !(current_user && (current_user.admin? || (current_user == @user)))
       flash[:alert] = "Must be an admin to do that"
 
       redirect_to root_path
@@ -39,31 +38,29 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if current_user
-      define_user
-    else
-      flash[:alert] = "You must be logged in to do that"
+    define_user
+    if !(current_user && (current_user.admin? || (current_user == @user)))
+      flash[:alert] = "Must be an admin to do that"
 
       redirect_to root_path
     end
   end
 
   def update
-    if current_user
-      define_user
-      if @user.update(user_params)
-        flash[:notice] = "Successfully updated user"
-
-        redirect_to user_path(@user)
-      else
-        flash[:alert] = @user.errors.full_messages
-
-        render :edit
-      end
-    else
+    define_user
+    if !(current_user && (current_user.admin? || (current_user == @user)))
       flash[:alert] = "Must be logged in to do that"
 
       redirect_to login_path
+    end
+    if @user.update(user_params)
+      flash[:notice] = "Successfully updated user"
+
+      redirect_to user_path(@user)
+    else
+      flash[:alert] = @user.errors.full_messages
+
+      render :edit
     end
   end
 
@@ -92,7 +89,11 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:username, :password, :password_confirmation, :uid, :role)
+      params.require(:user).permit(:username, :password, :password_confirmation, :role)
     end
+
+    # def can_access_this_user
+    #   current_user && (current_user.admin? || (current_user == @user))
+    # end
 
 end
