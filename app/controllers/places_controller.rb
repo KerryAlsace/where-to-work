@@ -1,9 +1,8 @@
 class PlacesController < ApplicationController
 
   def add_comment
-    raise
     define_place
-    if @place.add_comment_to_place(params[:comments])
+    if @place.add_comment_to_place(params[:comment])
       flash[:notice] = "Comment has been added below"
 
       redirect_to user_place_path(current_user, @place)
@@ -67,7 +66,13 @@ class PlacesController < ApplicationController
 
       redirect_to 'users/#{current_user.id}/places/#{@place.id}'
     else
-      @shared_place = @place.current_user_shared_place(current_user)
+      shared_place = @place.current_user_shared_place(current_user)
+      if shared_place.comment == nil || shared_place.comment == ""
+        shared_place.comment = ""
+        @comment = shared_place.comment
+      else
+        @current_comment = shared_place.comment
+      end
     end
     if allowed_to_edit_place?
       @permitted_editor
