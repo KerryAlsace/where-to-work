@@ -22,7 +22,7 @@ class PlacesController < ApplicationController
       @place = current_user.places.build(place_params)
       @place.creator_id = current_user.id
       @place.neighborhood = Neighborhood.find(params[:place][:neighborhood_id].to_i)
-
+      authorize @place
       if @place.save(place_params)
         flash[:notice] = "Successfully created place"
 
@@ -57,7 +57,9 @@ class PlacesController < ApplicationController
   def update
     if current_user
       define_place
-      if @place.update(place_params)
+      authorize @place
+      if @place.update_attributes(permitted_attributes(@place))
+      # if @place.update(place_params)
         flash[:notice] = "Successfully updated place"
 
         redirect_to user_place_path(@place)
@@ -76,10 +78,16 @@ class PlacesController < ApplicationController
   def destroy
     if current_user
       define_place
-      @place.destroy
-      flash[:notice] = "Successfully deleted place"
+      authorize @place
+      if @place.destroy
+        flash[:notice] = "Successfully deleted place"
 
-      redirect_to user_places_path
+        redirect_to user_places_path
+      else
+        flash[:alert] = @place.errors.full_messages
+
+        redirect_to user_place_path(current_user, @place)
+      end
     else
       flash[:alert] = "Must be logged in to do that"
 
