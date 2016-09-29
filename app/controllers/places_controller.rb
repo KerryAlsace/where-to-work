@@ -28,6 +28,7 @@ class PlacesController < ApplicationController
 
   def new
     @place = current_user.places.build
+    @possible_friends = possible_friends
     if params[:user_id].to_i != current_user.id
 
       redirect_to 'users/#{current_user.id}/places/new'
@@ -70,6 +71,7 @@ class PlacesController < ApplicationController
 
   def edit
     define_place
+    @possible_friends = possible_friends
     if params[:user_id].to_i != current_user.id
 
       redirect_to 'users/#{current_user.id}/places/@place.id/edit'
@@ -127,6 +129,10 @@ class PlacesController < ApplicationController
 
     def allowed_to_edit_place?
       current_user && (current_user.admin? || (current_user == @place.creator))
+    end
+
+    def possible_friends
+      User.where.not(id: current_user.id)
     end
 
 end
