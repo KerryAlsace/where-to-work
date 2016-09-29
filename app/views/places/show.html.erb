@@ -1,4 +1,5 @@
 <h1><%= @place.name %> </h1>
+<h4>Created by <%= @place.creator.username %></h4>
 
 Neighborhood: <%= link_to @place.neighborhood.name, neighborhood_path(@place.neighborhood) %><br>
 Address: <%= @place.address %><br>
@@ -25,16 +26,21 @@ Costs money? <%= @place.costs_money %><br><br>
   </tbody>
 </table>
 
+<br><br><br>
 
-<%= link_to "Edit Place", edit_user_place_path(@place.creator_id, @place) %>
+<% if @permitted_editor %>
+  <%= link_to "Edit Place", edit_user_place_path(@place.creator_id, @place) %>
+<% end %>
 
-<%= form_for(@place) do |f| %>
+<br><br>
 
-  <%= f.fields_for :comments do |comment| %>
-        <%= comment.label :comment %>
-        <%= comment.text_area :comment %>
-  <% end %>
-
-  <%= link_to "Add Comment", add_comment_path(current_user, @place) %>
-  <%= f.submit %>
+<h2>Add a comment:</h2>
+<%= form_for([@shared_place, @shared_place.comment]) do |f| %>
+  <p>
+    <%= f.label :comment %><br>
+    <%= f.text_area :comment %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
 <% end %>

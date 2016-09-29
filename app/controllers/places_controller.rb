@@ -66,6 +66,11 @@ class PlacesController < ApplicationController
     elsif !allowed_to_view_place?
 
       redirect_to 'users/#{current_user.id}/places/#{@place.id}'
+    else
+      @shared_place = @place.current_user_shared_place(current_user)
+    end
+    if allowed_to_edit_place?
+      @permitted_editor
     end
   end
 
@@ -130,7 +135,7 @@ class PlacesController < ApplicationController
     end
 
     def allowed_to_view_place?
-      current_user && (current_user.admin? || (current_user.places.include?(@place)))
+      current_user && (current_user.admin? || (current_user.places_from_shared_places.include?(@place)) || (current_user == @place.creator))
     end
 
     def allowed_to_edit_place?

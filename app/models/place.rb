@@ -15,7 +15,7 @@ class Place < ApplicationRecord
     end
   end
 
-  def current_user_shared_place
+  def current_user_shared_place(current_user)
     if friends.include?(current_user)
       s = shared_places.where(friend_id: current_user.id)
       s.first
@@ -43,3 +43,14 @@ end
 #   <% end %>
 # <% end %>
 # <br>
+
+# <%= form_for(@place) do |f| %>
+
+#   <%= f.fields_for :comments do |comment| %>
+#         <%= comment.label :comment %>
+#         <%= comment.text_area :comment %>
+#   <% end %>
+
+#   <%= link_to "Add Comment", add_comment_path(current_user, @place) %>
+#   <%= f.submit %>
+# <% end %>
