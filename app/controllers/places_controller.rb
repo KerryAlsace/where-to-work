@@ -14,6 +14,10 @@ class PlacesController < ApplicationController
 
   def new
     @place = current_user.places.build
+    if params[:user_id].to_i != current_user.id
+
+      redirect_to 'users/#{current_user.id}/places/new'
+    end
   end
 
   def create
@@ -40,15 +44,22 @@ class PlacesController < ApplicationController
 
   def show
     define_place
-    if !allowed_to_view_place?
+    if !current_user
       flash[:alert] = "Must be logged in to do that"
 
       redirect_to login_path
+    elsif !allowed_to_view_place?
+
+      redirect_to 'users/#{current_user.id}/places/#{@place.id}'
     end
   end
 
   def edit
     define_place
+    if params[:user_id].to_i != current_user.id
+
+      redirect_to 'users/#{current_user.id}/places/@place.id/edit'
+    end
   end
 
   def update
