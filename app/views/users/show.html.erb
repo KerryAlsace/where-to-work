@@ -2,17 +2,23 @@
 
 Role: <%= @user.role.capitalize %><br><br>
 
-<% @user.places.each do |place| %>
-  Name: <%= link_to place.name, user_place_path(@user, place) %><br>
-  Neighborhood: <%= link_to place.neighborhood.name, neighborhood_path(place.neighborhood.name) %><br>
-  Address: <%= place.address %><br>
-  Comments: <%= place.comments %><br>
-  Has wifi? <%= place.wifi %>
-  Wifi quality <%= place.wifi_quality %><br>
-  Has restroom? <%= place.public_restroom %>
-  Restroom cleanliness: <%= place.restroom_cleanliness %><br>
-  Costs money? <%= place.costs_money %><br>
-  <br>
+<% if @user.places.count == 0 %>
+  This user has no places. <br><br>
+<% else %>
+  <% @user.places.each do |place| %>
+    Name: <%= link_to place.name, user_place_path(@user, place) %><br>
+    Neighborhood: <%= link_to place.neighborhood.name, neighborhood_path(place.neighborhood.name) %><br>
+    Address: <%= place.address %><br>
+    Comments: <%= place.comments %><br>
+    Has wifi? <%= place.wifi %>
+    Wifi quality <%= place.wifi_quality %><br>
+    Has restroom? <%= place.public_restroom %>
+    Restroom cleanliness: <%= place.restroom_cleanliness %><br>
+    Costs money? <%= place.costs_money %><br>
+    <br>
+  <% end %>
 <% end %>
+
+<%= link_to "Edit User", edit_user_path(@user) %><br>
 
 <%= link_to "Back to all users", users_path %>
