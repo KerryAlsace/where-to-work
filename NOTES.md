@@ -63,6 +63,7 @@ Todo:
   -Move comments out of places and into shared_places?
   -Shared Places are showing the place creator as a friend: fix
   -Add restrictions for friends: can add comments, view show#place, cannot destroy or edit place
+  -Creating or editing place doesn't correctly save "friends"
 
 
 abilities:

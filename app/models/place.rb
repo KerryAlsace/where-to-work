@@ -3,7 +3,7 @@ class Place < ApplicationRecord
   # belongs_to :creator, class_name: 'User'
   belongs_to :user, foreign_key: 'creator_id'
   has_many :shared_places
-  # has_many :friends, through: :shared_places, class_name: 'User'
+  has_many :friends, through: :shared_places, class_name: 'User'
 
   def comments
     if !shared_places
