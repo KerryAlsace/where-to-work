@@ -16,9 +16,9 @@ class SessionsController < ApplicationController
 
         redirect_to places_path
       else
-        flash[:alert] = "Log in unsuccessful"
+        flash[:alert] = "Incorrect login information"
 
-        render 'sessions#new'
+        render :new
       end
     end
   end
