@@ -4,7 +4,6 @@ class CreatePlaces < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :neighborhood
       t.string :address
-      t.text :comments
       t.boolean :wifi
       t.string :wifi_quality
       t.boolean :public_restroom

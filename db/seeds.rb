@@ -10,7 +10,7 @@
   id = i + 1
   neighborhood = Neighborhood.create(name: "Neighborhood #{id}")
   u = User.create(username: "user#{id}", password: "test1234")
-  u.places.create(name: "Place #{id}", neighborhood: neighborhood, address: "1234 Broadway", comments: "Gets crowded", wifi: true, wifi_quality: 3, public_restroom: true, restroom_cleanliness: 3, costs_money: true, creator_id: u.id)
+  u.places.create(name: "Place #{id}", neighborhood: neighborhood, address: "1234 Broadway", wifi: true, wifi_quality: 3, public_restroom: true, restroom_cleanliness: 3, costs_money: true, creator_id: u.id)
 end
 
 User.first.admin!

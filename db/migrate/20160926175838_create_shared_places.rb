@@ -3,6 +3,7 @@ class CreateSharedPlaces < ActiveRecord::Migration[5.0]
     create_table :shared_places do |t|
       t.integer :friend_id
       t.integer :place_id
+      t.text :comments
 
       t.timestamps
     end
