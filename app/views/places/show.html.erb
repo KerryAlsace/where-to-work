@@ -10,7 +10,9 @@ Costs money? <%= @place.costs_money %><br>
 
 Comments: <br>
 <% @place.comments.each do |comment| %>
-  <%= comment %><br>
+  <% if comment != nil %>
+    <%= comment %><br>
+  <% end %>
 <% end %>
 
 <br>
