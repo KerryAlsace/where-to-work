@@ -47,17 +47,19 @@
     </tr>
   </thead>
   <tbody>
-    <% current_user.all_shared_places.each do |place| %>
+    <% current_user.places_from_shared_places.each do |place| %>
     <tr>
-      <td><%= link_to place.name, user_place_path(current_user, place) %></td>
-      <td><%= link_to place.neighborhood.name, neighborhood_path(place.neighborhood) %></td>
-      <td><%= place.address %></td>
-      <td><%= place.wifi %></td>
-      <td><%= place.wifi_quality %></td>
-      <td><%= place.public_restroom %></td>
-      <td><%= place.restroom_cleanliness %></td>
-      <td><%= place.costs_money %></td>
-      <td><%= place.creator.username %></td>
+      <% if place != nil %>
+        <td><%= link_to place.name, user_place_path(current_user, place) %></td>
+        <td><%= link_to place.neighborhood.name, neighborhood_path(place.neighborhood) %></td>
+        <td><%= place.address %></td>
+        <td><%= place.wifi %></td>
+        <td><%= place.wifi_quality %></td>
+        <td><%= place.public_restroom %></td>
+        <td><%= place.restroom_cleanliness %></td>
+        <td><%= place.costs_money %></td>
+        <td><%= place.creator.username %></td>
+      <% end %>
     </tr>
     <% end %>
   </tbody>

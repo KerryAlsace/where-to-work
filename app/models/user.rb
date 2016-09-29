@@ -3,8 +3,8 @@ class User < ApplicationRecord
 
   has_many :places, foreign_key: 'creator_id'
   has_many :shared_places, foreign_key: 'friend_id'
-  has_many :friends, through: :shared_places
-  has_many :places, through: :shared_places, foreign_key: 'friend_id'
+  # has_many :friends, through: :shared_places
+  # has_many :places, through: :shared_places, foreign_key: 'friend_id'
 
   has_secure_password
 
@@ -24,16 +24,20 @@ class User < ApplicationRecord
     self.uid != nil
   end
 
-  def shared_place_place_associations
-    places = shared_places.collect do |shared_place|
-      Place.where(id: shared_place.place_id)
+  def real_shared_places
+    shared_places.collect do |shared_place|
+      place = shared_place.place
+      if shared_place.friend_id != place.creator_id
+        shared_place
+      end
     end
-    places.first
   end
 
-  def all_shared_places
-    shared_place_place_associations.collect do |place|
-      place
+  def places_from_shared_places
+    real_shared_places.collect do |shared_place|
+      if shared_place != nil
+        shared_place.place
+      end
     end
   end
 
