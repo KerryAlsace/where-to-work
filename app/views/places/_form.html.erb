@@ -23,7 +23,7 @@
   <%= f.label :costs_money, "Costs money?" %>
   <%= f.check_box :costs_money %><br><br>
 
-  <%= f.label :shared_place, "Share with friend?" %><br />
+  <%= f.label :friend_ids, "Share with friend?" %><br />
   <%= f.collection_check_boxes :friend_ids, @possible_friends, :id, :username do |b| %>
       <%= b.check_box %>
       <%= b.label %><br><br>

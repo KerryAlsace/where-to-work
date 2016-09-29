@@ -85,6 +85,12 @@ class PlacesController < ApplicationController
 
       redirect_to login_path
     end
+    friend_ids = params[:place][:friend_ids]
+    friend_ids.each do |friend_id|
+      if friend_id != "" && !@place.friends.include?(User.where(id: friend_id))
+        SharedPlace.create(place_id: @place.id, friend_id: friend_id)
+      end
+    end
     if @place.update(place_params)
       flash[:notice] = "Successfully updated place"
 
