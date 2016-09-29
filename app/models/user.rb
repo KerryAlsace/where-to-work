@@ -20,4 +20,8 @@ class User < ApplicationRecord
     end
   end
 
+  def oauth_user?
+    self.uid != nil
+  end
+
 end

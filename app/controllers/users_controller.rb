@@ -41,7 +41,7 @@ class UsersController < ApplicationController
   def edit
     define_user
     if !allowed_to_view_user?
-      admin_or_user_alert
+      admin_alert
 
       redirect_to root_path
     end
@@ -94,7 +94,7 @@ class UsersController < ApplicationController
     end
 
     def allowed_to_view_user?
-      current_user && (current_user.admin? || (current_user == @user))
+      current_user && (current_user.admin? || (current_user == @user && !@user.oauth_user?))
     end
 
     def success_notice

@@ -57,9 +57,10 @@
 53. Refractor and add authorization
 
 Todo:
-  -Users can't create or edit or delete other users' places (unless admin)
+  xUsers can't create or edit or delete other users' places (unless admin)
   -oauth users can't edit themselves
   -Get shared places working and displaying
+  -Move comments out of places and into shared_places?
 
 
 abilities:
