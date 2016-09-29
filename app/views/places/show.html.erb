@@ -25,13 +25,16 @@ Costs money? <%= @place.costs_money %><br><br>
   </tbody>
 </table>
 
-<br>
-<% if @place.friends.include?(current_user) %>
-  <%= form_for @place do |f| %>
-    <%= f.label :comments %>:<br>
-    <%= f.text_field :comments %><br><br>
-    <%= f.submit "Add Comment", add_comment_path(current_user, @place) %>
-  <% end %>
-<% end %>
-<br>
+
 <%= link_to "Edit Place", edit_user_place_path(@place.creator_id, @place) %>
+
+<%= form_for(@place) do |f| %>
+
+  <%= f.fields_for :comments do |comment| %>
+        <%= comment.label :comment %>
+        <%= comment.text_area :comment %>
+  <% end %>
+
+  <%= link_to "Add Comment", add_comment_path(current_user, @place) %>
+  <%= f.submit %>
+<% end %>

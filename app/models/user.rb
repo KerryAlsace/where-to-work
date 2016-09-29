@@ -24,4 +24,17 @@ class User < ApplicationRecord
     self.uid != nil
   end
 
+  def shared_place_place_associations
+    places = shared_places.collect do |shared_place|
+      Place.where(id: shared_place.place_id)
+    end
+    places.first
+  end
+
+  def all_shared_places
+    shared_place_place_associations.collect do |place|
+      place
+    end
+  end
+
 end

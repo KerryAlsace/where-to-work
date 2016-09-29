@@ -28,3 +28,13 @@ class Place < ApplicationRecord
 end
 
 # p.current_user_shared_place(current_user).first.comment
+
+# <br>
+# <% if @place.friends.include?(current_user) %>
+#   <%= form_for @place do |f| %>
+#     <%= f.label :comments %>:<br>
+#     <%= f.text_field :comments %><br><br>
+#     <%= f.submit "Add Comment", add_comment_path(current_user, @place) %>
+#   <% end %>
+# <% end %>
+# <br>

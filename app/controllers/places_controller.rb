@@ -1,6 +1,7 @@
 class PlacesController < ApplicationController
 
   def add_comment
+    raise
     define_place
     if @place.add_comment_to_place(params[:comments])
       flash[:notice] = "Comment has been added below"
