@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20160926180254) do
   create_table "shared_places", force: :cascade do |t|
     t.integer  "friend_id"
     t.integer  "place_id"
-    t.text     "comments"
+    t.text     "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

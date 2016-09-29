@@ -4,11 +4,14 @@ class Place < ApplicationRecord
   has_many :shared_places
   has_many :friends, through: :shared_places, class_name: 'User'
 
-  def user_comments
-    if shared_places != nil
-      shared_places.each do |shared_place|
-        "#{comment_list}"
+  def comments
+    if !shared_places
+      return []
+    elsif shared_places
+      shared_places.collect do |shared_place|
+        shared_place.comment
       end
     end
   end
+
 end
