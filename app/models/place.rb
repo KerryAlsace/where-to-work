@@ -21,6 +21,10 @@ class Place < ApplicationRecord
     end
   end
 
+  def add_comment_to_place(comment)
+    comments << comment
+  end
+
 end
 
 # p.current_user_shared_place(current_user).first.comment

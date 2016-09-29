@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   resources :neighborhoods, only: [:index, :show]
 
   root 'welcome#index'
+
+  post '/users/:user_id/place/:id', to: 'places#add_comment', as: 'add_comment'
 end
 
 
@@ -50,3 +52,4 @@ end
 #   neighborhoods GET    /neighborhoods(.:format)                  neighborhoods#index
 #    neighborhood GET    /neighborhoods/:id(.:format)              neighborhoods#show
 #            root GET    /                                         welcome#index
+#     add_comment POST   /users/:user_id/place/:id(.:format)       places#add_comment
