@@ -2,7 +2,7 @@ class PlacesController < ApplicationController
 
   def add_comment
     define_place
-    if @place.add_comment_to_place(params[:comment])
+    if @place.add_comment_to_place(params[:comment], current_user)
       flash[:notice] = "Comment has been added below"
 
       redirect_to user_place_path(current_user, @place)

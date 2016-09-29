@@ -10,7 +10,9 @@ class Place < ApplicationRecord
       return []
     elsif shared_places
       shared_places.collect do |shared_place|
-        shared_place.comment
+        if shared_place.comment != nil && shared_place.comment != ""
+          shared_place.comment
+        end
       end
     end
   end
@@ -22,9 +24,15 @@ class Place < ApplicationRecord
     end
   end
 
-  def add_comment_to_place(comment)
-    comments << comment
+  def add_comment_to_place(comment, current_user)
+    s = current_user_shared_place(current_user)
+    s.comment = comment
+    s.save
   end
+
+  # def add_comment_to_place(comment)
+  #   comments << comment
+  # end
 
   def creator
     User.where(id: creator_id).first
