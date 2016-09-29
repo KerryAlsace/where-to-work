@@ -14,4 +14,13 @@ class Place < ApplicationRecord
     end
   end
 
+  def current_user_shared_place
+    if friends.include?(current_user)
+      s = shared_places.where(friend_id: current_user.id)
+      s.first
+    end
+  end
+
 end
+
+# p.current_user_shared_place(current_user).first.comment
