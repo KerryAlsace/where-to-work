@@ -59,11 +59,13 @@
 Todo:
   xUsers can't create or edit or delete other users' places (unless admin)
   xoauth users can't edit themselves
-  -Get shared places working and displaying
-  -Move comments out of places and into shared_places?
-  -Shared Places are showing the place creator as a friend: fix
-  -Add restrictions for friends: can add comments, view show#place, cannot destroy or edit place
+  xGet shared places working and displaying
+  xMove comments out of places and into shared_places?
+  xShared Places are showing the place creator as a friend: fix
   -Creating or editing place doesn't correctly save "friends"
+  -Add restrictions for friends: can add comments, view show#place, cannot destroy or edit place
+  -get comments working
+
 
 
 abilities:
