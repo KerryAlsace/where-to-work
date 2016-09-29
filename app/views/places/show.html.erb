@@ -6,14 +6,24 @@ Has wifi? <%= @place.wifi %>
 Wifi quality: <%= @place.wifi_quality %><br>
 Has restroom? <%= @place.public_restroom %>
 Restroom cleanliness: <%= @place.restroom_cleanliness %><br>
-Costs money? <%= @place.costs_money %><br>
+Costs money? <%= @place.costs_money %><br><br>
 
-Comments: <br>
-<% @place.comments.each do |comment| %>
-  <% if comment != nil %>
-    <%= comment %><br>
-  <% end %>
-<% end %>
+<table>
+  <thead>
+    <tr>
+      <th>Comments: </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @place.comments.each do |comment| %>
+    <tr>
+      <% if comment != nil %>
+        <td>"<%= comment %>"</td>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <br>
 
