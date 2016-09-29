@@ -1,11 +1,10 @@
 class PlacesController < ApplicationController
 
   def index
-    if current_user
+    if current_user && current_user.admin?
       @places = Place.all
-      if current_user.shared_places 
-        @shared_places = current_user.shared_places
-      end
+    elsif current_user
+      @places = current_user.places
     else
       flash[:alert] = "Must be logged in to do that"
 
@@ -22,7 +21,6 @@ class PlacesController < ApplicationController
       @place = current_user.places.build(place_params)
       @place.creator_id = current_user.id
       @place.neighborhood = Neighborhood.find(params[:place][:neighborhood_id].to_i)
-      authorize @place
       if @place.save(place_params)
         flash[:notice] = "Successfully created place"
 
@@ -41,9 +39,8 @@ class PlacesController < ApplicationController
   end
 
   def show
-    if current_user
-      define_place
-    else
+    define_place
+    if !allowed_to_view_place?
       flash[:alert] = "Must be logged in to do that"
 
       redirect_to login_path
@@ -55,43 +52,38 @@ class PlacesController < ApplicationController
   end
 
   def update
-    if current_user
-      define_place
-      authorize @place
-      if @place.update_attributes(permitted_attributes(@place))
-      # if @place.update(place_params)
-        flash[:notice] = "Successfully updated place"
-
-        redirect_to user_place_path(@place)
-      else
-        flash[:alert] = "Could not update place"
-
-        render :edit
-      end
-    else
-      flash[:alert] = "Must be logged in to do that"
+    define_place
+    if !allowed_to_edit_place?
+      flash[:alert] = "You're not allowed to edit this place"
 
       redirect_to login_path
+    end
+    if @place.update(place_params)
+      flash[:notice] = "Successfully updated place"
+
+      redirect_to user_place_path(@place)
+    else
+      flash[:alert] = "Could not update place"
+
+      render :edit
     end
   end
 
   def destroy
-    if current_user
-      define_place
-      authorize @place
-      if @place.destroy
-        flash[:notice] = "Successfully deleted place"
-
-        redirect_to user_places_path
-      else
-        flash[:alert] = @place.errors.full_messages
-
-        redirect_to user_place_path(current_user, @place)
-      end
-    else
-      flash[:alert] = "Must be logged in to do that"
+    define_place
+    if !allowed_to_edit_place?
+      flash[:alert] = "You're not allowed to edit this place"
 
       redirect_to login_path
+    end
+    if @place.destroy
+      flash[:notice] = "Successfully deleted place"
+
+      redirect_to user_places_path
+    else
+      flash[:alert] = @place.errors.full_messages
+
+      redirect_to user_place_path(current_user, @place)
     end
   end
 
@@ -102,6 +94,14 @@ class PlacesController < ApplicationController
 
     def place_params
       params.require(:place).permit(:name, :neighborhood, :address, :comments, :wifi, :wifi_quality, :public_restroom, :restroom_cleanliness, :costs_money, :user_id, :friend_ids, :neighborhood_id, :creator_id)
+    end
+
+    def allowed_to_view_place?
+      current_user && (current_user.admin? || (current_user.places.include?(@place)))
+    end
+
+    def allowed_to_edit_place?
+      current_user && (current_user.admin? || (current_user == @place.creator))
     end
 
 end

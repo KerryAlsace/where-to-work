@@ -30,6 +30,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    define_user
     if !allowed_to_view_user?
       admin_or_user_alert
 
@@ -38,6 +39,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    define_user
     if !allowed_to_view_user?
       admin_or_user_alert
 
@@ -46,6 +48,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    define_user
     if !allowed_to_view_user?
       login_alert
 
@@ -63,6 +66,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    define_user
     if !allowed_to_view_user?
       login_alert
 
@@ -90,7 +94,6 @@ class UsersController < ApplicationController
     end
 
     def allowed_to_view_user?
-      define_user
       current_user && (current_user.admin? || (current_user == @user))
     end
 

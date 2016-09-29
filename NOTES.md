@@ -59,6 +59,7 @@
 Todo:
   -Users can't create or edit or delete other users' places (unless admin)
   -oauth users can't edit themselves
+  -Get shared places working and displaying
 
 
 abilities:
