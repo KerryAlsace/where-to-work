@@ -61,6 +61,7 @@ Todo:
   xoauth users can't edit themselves
   -Get shared places working and displaying
   -Move comments out of places and into shared_places?
+  -Shared Places are showing the place creator as a friend: fix
 
 
 abilities:

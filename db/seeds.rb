@@ -17,5 +17,11 @@ User.first.admin!
 
 User.last.admin!
 
+5.times do |i|
+  id = i + 1
+  other_id = id + 1
+  SharedPlace.create(place_id: id, friend_id: other_id, comment: "User #{other_id} says Place #{id} is great")
+end
+
 
 
