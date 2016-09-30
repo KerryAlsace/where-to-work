@@ -62,9 +62,9 @@ Todo:
   xGet shared places working and displaying
   xMove comments out of places and into shared_places?
   xShared Places are showing the place creator as a friend: fix
-  -Creating or editing place doesn't correctly save "friends"
-  -Add restrictions for friends: can add comments, view show#place, cannot destroy or edit place
-  -get comments working
+  xCreating or editing place doesn't correctly save "friends"
+  xAdd restrictions for friends: can add comments, view show#place, cannot destroy or edit place
+  xget comments working
 
 
 
