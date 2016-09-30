@@ -34,26 +34,28 @@ Costs money? <%= @place.costs_money %><br><br>
 
 <br><br>
 
-<% if @current_comment %>
-  <h2>Edit Your comment:</h2>
-  <%= form_for(@comment) do |f| %>
-    <p>
-      <%= f.label :comment %><br>
-      <%= f.text_area :comment, placeholder: @comment %>
-    </p>
-    <p>
-      <%= f.submit "Save Edit" %>
-    </p>
-  <% end %>
-<% else %>
-  <h2>Add a comment:</h2>
-  <%= form_for(@comment) do |f| %>
-    <p>
-      <%= f.label :comment %><br>
-      <%= f.text_area :comment %>
-    </p>
-    <p>
-      <%= f.submit "Add Comment" %>
-    </p>
+<% if @place.current_user_shared_place(current_user) %>
+  <% if @current_comment %>
+    <h2>Edit Your comment:</h2>
+    <%= form_for(@comment) do |f| %>
+      <p>
+        <%= f.label :comment %><br>
+        <%= f.text_area :comment, placeholder: @shared_place.comment %>
+      </p>
+      <p>
+        <%= f.submit "Save Edit" %>
+      </p>
+    <% end %>
+  <% else %>
+    <h2>Add a comment:</h2>
+    <%= form_for(@comment) do |f| %>
+      <p>
+        <%= f.label :comment %><br>
+        <%= f.text_area :comment %>
+      </p>
+      <p>
+        <%= f.submit "Add Comment" %>
+      </p>
+    <% end %>
   <% end %>
 <% end %>
