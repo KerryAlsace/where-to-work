@@ -40,5 +40,43 @@ end
   s.save!
 end
 
-User.first.role = "admin"
-User.last.role = "admin"
+u = User.first
+u.role = "admin"
+u.save!
+u = User.last
+u.role = "admin"
+u.save!
+
+# Users:
+# 0 Jaqen H'ghar
+# 1 Robb Stark
+# 2 Viserys Targaryen
+# 3 Robert Baratheon
+# 4 Daenerys Targaryen
+# 5 Davos Seaworth
+# 6 Shae
+
+# Neighborhoods:
+# 0 Yunkai
+# 1 Tyrosh
+# 2 Mantarys
+# 3 King's Landing
+# 4 Sunspear
+# 5 New Ghis
+# 6 Old Valyria
+
+# Places:
+# 0 Betelgeuse
+# 1 Arcturus
+# 2 Betelgeuse
+# 3 Betelgeuse
+# 4 Arcturus
+# 5 Rigil Kentaurus
+# 6 Sirius A
+
+# SharedPlaces:
+# 0 friend:2, place:1
+# 1 friend:3, place:2
+# 2 friend:4, place:3
+# 3 friend:5, place:4
+# 4 friend:6, place:5

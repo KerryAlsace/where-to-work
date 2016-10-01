@@ -3,9 +3,9 @@ class User < ApplicationRecord
   has_many :shared_places, foreign_key: 'friend_id'
   enum role: [ :user, :admin ]
 
-  validates_presence_of :username, :password
+  validates_presence_of :username
   validates_uniqueness_of :username
-  has_secure_password(validations: false)
+  has_secure_password
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
