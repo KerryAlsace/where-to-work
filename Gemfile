@@ -36,6 +36,8 @@ gem 'omniauth'
 # Add google oauth2
 gem "omniauth-google-oauth2"
 
+gem 'faker'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

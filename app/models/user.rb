@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   validates_presence_of :username, :password
   validates_uniqueness_of :username
-  has_secure_password
+  has_secure_password(validations: false)
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
