@@ -55,22 +55,8 @@
 51. `rails g controller Neighborhoods`
 52. Use 'https://richonrails.com/articles/google-authentication-in-ruby-on-rails' to help add oauth
 53. Refractor and add authorization
-
-Todo:
-  xUsers can't create or edit or delete other users' places (unless admin)
-  xoauth users can't edit themselves
-  xGet shared places working and displaying
-  xMove comments out of places and into shared_places?
-  xShared Places are showing the place creator as a friend: fix
-  xCreating or editing place doesn't correctly save "friends"
-  xAdd restrictions for friends: can add comments, view show#place, cannot destroy or edit place
-  xget comments working
-
-
-
-abilities:
-
-user.admin? or place.user = current_user or place.user.shared_places.include?(current_user)
+54. Nested form:
+The nested form needs to be building both a parent object and child object from within the same form, so say if I can both create a Place, and a comment for that Place at the same time. And using a custom attribute writer method like `Place#comments_attributes=` to create and associate the comment to the place.
 
 
 
