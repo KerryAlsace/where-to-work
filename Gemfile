@@ -55,6 +55,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   # Use Pry for debugging
   gem 'pry'
+  # Use Awesome Print to format rails console
+  gem 'awesome_print'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
