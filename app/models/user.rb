@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :shared_places, foreign_key: 'friend_id'
   enum role: [ :user, :admin ]
 
-  validates_presence_of :username, :password
+  validates_presence_of :username #, :password
   validates_uniqueness_of :username
   has_secure_password
 
