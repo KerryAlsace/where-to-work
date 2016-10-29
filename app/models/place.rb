@@ -1,10 +1,15 @@
 class Place < ApplicationRecord
   belongs_to :neighborhood
-  belongs_to :user, foreign_key: 'creator_id'
+  belongs_to :user, foreign_key: 'creator_id', counter_cache: true
   has_many :shared_places
   has_many :friends, through: :shared_places, class_name: 'User'
 
   validates_presence_of :name, :neighborhood
+
+  # def self.most_shared_places
+  #   binding.pry
+  #   order(friends: :desc)
+  # end
 
   def comments
     if !shared_places

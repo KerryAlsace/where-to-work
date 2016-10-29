@@ -13,7 +13,8 @@ Specs:
 - Place has many friends through shared_places, and friends can submit a comment attribute to a place
 - [x] Include reasonable validations for simple model objects (list of model objects with validations e.g. User, Recipe, Ingredient, Item)
 - User, Place, Neighborhood
-- [ ] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
+- [x] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
+- User.most_places URL: /most_places (can only be viewed by admins)
 - [ ] Include a nested form writing to an associated model using a custom attribute writer (form URL, model name e.g. /recipe/new, Item)
 - [x] Include signup (how e.g. Devise)
 - Users can sign up

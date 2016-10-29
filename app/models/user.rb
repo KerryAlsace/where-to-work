@@ -40,4 +40,8 @@ class User < ApplicationRecord
     end
   end
 
+  def self.most_places
+    order(places_count: :desc).first
+  end
+
 end

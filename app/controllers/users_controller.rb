@@ -1,5 +1,17 @@
 class UsersController < ApplicationController
 
+  def most_places
+    if current_user && current_user.admin?
+      @user = User.most_places
+      
+      render :show
+    else
+      admin_alert
+
+      redirect_to root_path
+    end
+  end
+
   def index
     if current_user && current_user.admin?
       @users = User.all

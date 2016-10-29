@@ -1,5 +1,17 @@
 class PlacesController < ApplicationController
 
+  # def most_shared_places
+  #   if current_user && current_user.admin?
+  #     @places = Place.most_shared_places
+      
+  #     render :index
+  #   else
+  #     admin_alert
+
+  #     redirect_to root_path
+  #   end
+  # end
+
   def add_comment
     define_place
     if @place.add_comment_to_place(params[:comment], current_user)

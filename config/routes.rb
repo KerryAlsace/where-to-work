@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   post '/users/:user_id/places/:id', to: 'places#add_comment', as: 'add_comment'
+
+  get '/most_places' => 'users#most_places'
+  # get '/most_shared_places' => 'places#most_shared_places'
 end
 
 
