@@ -130,9 +130,7 @@ class UsersController < ApplicationController
     end
 
     def system_error_messages
-      @user.errors.full_messages.each do |message|
-        flash[:alert] = message
-      end
+      flash[:alert] = @user.errors.full_messages.join(", ")
     end
 
 end

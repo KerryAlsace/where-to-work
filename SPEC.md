@@ -28,7 +28,7 @@ Specs:
 - users/:user_id/places/:id
 - [x] Include nested resource "new" form (URL e.g. recipes/1/ingredients)
 - users/:user_id/places/new
-- [ ] Include form display of validation errors (form URL e.g. /recipes/new)
+- [x] Include form display of validation errors (form URL e.g. /recipes/new)
 
 Confirm:
 - [ ] The application is pretty DRY
