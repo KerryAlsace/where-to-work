@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   def most_places
     if current_user && current_user.admin?
-      @user = User.most_places
+      define_user
       
       render :show
     else
@@ -98,7 +98,11 @@ class UsersController < ApplicationController
 
   private
     def define_user
-      @user = User.find(params[:id])
+      if params[:id] != "most_places"
+        @user = User.find(params[:id])
+      else
+        @user = User.most_places
+      end
     end
 
     def user_params
