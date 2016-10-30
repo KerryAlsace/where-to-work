@@ -1,17 +1,5 @@
 class PlacesController < ApplicationController
 
-  # def most_shared_places
-  #   if current_user && current_user.admin?
-  #     @places = Place.most_shared_places
-      
-  #     render :index
-  #   else
-  #     admin_alert
-
-  #     redirect_to root_path
-  #   end
-  # end
-
   def add_comment
     define_place
     if @place.add_comment_to_place(params[:comment], current_user)
@@ -19,7 +7,7 @@ class PlacesController < ApplicationController
 
       redirect_to user_place_path(current_user, @place)
     else
-      flash[:alert] = "Could not add comment"
+      system_error_messages
 
       redirect_to user_place_path(current_user, @place)
     end
@@ -56,8 +44,8 @@ class PlacesController < ApplicationController
 
         redirect_to user_place_path(current_user, @place)
       else
-        flash[:alert] = "Could not create place"
-        flash[:notice] = @place.errors.full_messages
+        binding.pry
+        system_error_messages
 
         render :new
       end
@@ -120,7 +108,7 @@ class PlacesController < ApplicationController
 
       redirect_to user_place_path(@place)
     else
-      flash[:alert] = "Could not update place"
+      system_error_messages
 
       render :edit
     end
@@ -138,7 +126,7 @@ class PlacesController < ApplicationController
 
       redirect_to user_places_path
     else
-      flash[:alert] = @place.errors.full_messages
+      system_error_messages
 
       redirect_to user_place_path(current_user, @place)
     end
@@ -163,6 +151,10 @@ class PlacesController < ApplicationController
 
     def possible_friends
       User.where.not(id: current_user.id)
+    end
+
+    def system_error_messages
+      flash[:alert] = @place.errors.full_messages.join(', ')
     end
 
 end

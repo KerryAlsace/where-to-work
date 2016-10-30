@@ -33,4 +33,9 @@ Things you may want to cover:
 `rails c` to drop into rails console
 `rails s` to start server
 localhost:3000
-
+add this to config/application.yml file:
+```
+GOOGLE_CLIENT_ID: <ID>
+GOOGLE_CLIENT_SECRET: <SECRET>
+```
+replace <ID> and <SECRET> with info from your Google API Console: https://developers.google.com/identity/protocols/OAuth2?csw=1

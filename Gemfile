@@ -36,7 +36,11 @@ gem 'omniauth'
 # Add google oauth2
 gem "omniauth-google-oauth2"
 
+# Use Faker to create fake seed data
 gem 'faker'
+
+# Use Figaro to protect environment variables
+gem 'figaro'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
