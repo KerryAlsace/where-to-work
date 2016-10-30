@@ -33,7 +33,6 @@ class UsersController < ApplicationController
       success_notice
 
       redirect_to root_path
-      # redirect_to user_path(@user)
     else
       system_error_messages
 
