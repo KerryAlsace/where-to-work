@@ -2,12 +2,19 @@
 <h4>Created by <%= @place.creator.username %></h4>
 
 Neighborhood: <%= link_to @place.neighborhood.name, neighborhood_path(@place.neighborhood) %><br>
-Address: <%= @place.address %><br>
 Has wifi? <%= @place.wifi %>
 Wifi quality: <%= @place.wifi_quality %><br>
 Has restroom? <%= @place.public_restroom %>
 Restroom cleanliness: <%= @place.restroom_cleanliness %><br>
-Costs money? <%= @place.costs_money %><br><br>
+Costs money? <%= @place.costs_money %><br>
+Address: <br>
+<%= @place.address.street1 %><br>
+<% if @place.address.street2 != "" %>
+  <%= @place.address.street2 %><br>
+<% end %>
+<%= @place.address.city %><br>
+<%= @place.address.state %><br>
+<%= @place.address.zipcode %><br><br>
 
 <table>
   <thead>

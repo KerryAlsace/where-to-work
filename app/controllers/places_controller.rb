@@ -62,8 +62,9 @@ class PlacesController < ApplicationController
 
       redirect_to login_path
     elsif !allowed_to_view_place?
+      flash[:alert] = "Cannot view a place unless it's been shared with you"
 
-      redirect_to 'users/#{current_user.id}/places/#{@place.id}'
+      redirect_to user_places_path
     elsif @place.current_user_shared_place(current_user)
       @shared_place = @place.current_user_shared_place(current_user)
       if @shared_place.comment == nil || @shared_place.comment == ""

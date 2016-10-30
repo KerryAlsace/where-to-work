@@ -19,7 +19,7 @@
     <tr>
       <td><%= link_to place.name, user_place_path(current_user, place) %></td>
       <td><%= link_to place.neighborhood.name, neighborhood_path(place.neighborhood) %></td>
-      <td><%= place.address %></td>
+      <td><%= place.address.street1 %></td>
       <td><%= place.wifi %></td>
       <td><%= place.wifi_quality %></td>
       <td><%= place.public_restroom %></td>
