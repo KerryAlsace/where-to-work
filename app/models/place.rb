@@ -3,13 +3,10 @@ class Place < ApplicationRecord
   belongs_to :user, foreign_key: 'creator_id', counter_cache: true
   has_many :shared_places
   has_many :friends, through: :shared_places, class_name: 'User'
+  has_one :address, inverse_of: :place
+  accepts_nested_attributes_for :address
 
   validates_presence_of :name, :neighborhood
-
-  # def self.most_shared_places
-  #   binding.pry
-  #   order(friends: :desc)
-  # end
 
   def comments
     if !shared_places

@@ -1,12 +1,26 @@
-<%= form_for @place do |f| %>
+<%= form_for (setup_place(@place)) do |f| %>
   <%= f.label :name %>:<br>
   <%= f.text_field :name %><br><br>
 
   <%= f.label :neighborhood_id %>:<br>
   <%= f.collection_select :neighborhood_id, Neighborhood.all, :id, :name %><br><br>
 
-  <%= f.label :address %>:<br>
-  <%= f.text_field :address %><br><br>
+  <%= f.fields_for :address do |ff| %>
+    <%= ff.label :street1 %><br>
+    <%= ff.text_field :street1 %><br><br>
+
+    <%= ff.label :street2 %><br>
+    <%= ff.text_field :street2 %><br><br>
+
+    <%= ff.label :city %><br>
+    <%= ff.text_field :city %><br><br>
+
+    <%= ff.label :state %><br>
+    <%= ff.text_field :state %><br><br>
+
+    <%= ff.label :zipcode %><br>
+    <%= ff.text_field :zipcode %><br><br>
+  <% end %>
 
   <%= f.label :wifi, "Has wifi?" %>
   <%= f.check_box :wifi %>

@@ -137,7 +137,7 @@ class PlacesController < ApplicationController
     end
 
     def place_params
-      params.require(:place).permit(:name, :neighborhood, :address, :comments, :wifi, :wifi_quality, :public_restroom, :restroom_cleanliness, :costs_money, :user_id, :friend_ids, :neighborhood_id, :creator_id)
+      params.require(:place).permit(:name, :neighborhood, :comments, :wifi, :wifi_quality, :public_restroom, :restroom_cleanliness, :costs_money, :user_id, :friend_ids, :neighborhood_id, :creator_id, address_attributes: [:street1, :street2, :city, :state, :zipcode])
     end
 
     def allowed_to_view_place?

@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160926180254) do
+ActiveRecord::Schema.define(version: 20161030145021) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.string   "street1"
+    t.string   "street2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.integer  "place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "neighborhoods", force: :cascade do |t|
     t.string   "name"
@@ -21,7 +32,6 @@ ActiveRecord::Schema.define(version: 20160926180254) do
   create_table "places", force: :cascade do |t|
     t.string   "name"
     t.string   "neighborhood"
-    t.string   "address"
     t.boolean  "wifi"
     t.string   "wifi_quality"
     t.boolean  "public_restroom"

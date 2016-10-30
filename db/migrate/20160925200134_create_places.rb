@@ -3,7 +3,6 @@ class CreatePlaces < ActiveRecord::Migration[5.0]
     create_table :places do |t|
       t.string :name
       t.string :neighborhood
-      t.string :address
       t.boolean :wifi
       t.string :wifi_quality
       t.boolean :public_restroom

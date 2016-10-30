@@ -10,7 +10,7 @@
   id = i + 1
   neighborhood = Neighborhood.create(name: "Neighborhood #{id}")
   u = User.create(username: "user#{id}", password: "test1234")
-  u.places.create(name: "Place #{id}", neighborhood: neighborhood, address: "1234 Broadway", wifi: true, wifi_quality: 3, public_restroom: true, restroom_cleanliness: 3, costs_money: true, creator_id: u.id)
+  u.places.create(name: "Place #{id}", neighborhood: neighborhood, wifi: true, wifi_quality: 3, public_restroom: true, restroom_cleanliness: 3, costs_money: true, creator_id: u.id, address_attributes: { street1: "#{id} Main st.", city: "New York", state: "NY", zipcode: "1000#{i}"})
 end
 
 5.times do |i|
@@ -22,7 +22,6 @@ end
 User.first.admin!
 
 User.last.admin!
-
 
 # 7.times do
 #   neighborhood = Neighborhood.create(name: Faker::GameOfThrones.city)
