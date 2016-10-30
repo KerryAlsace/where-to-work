@@ -44,10 +44,9 @@ class PlacesController < ApplicationController
 
         redirect_to user_place_path(current_user, @place)
       else
-        binding.pry
         system_error_messages
 
-        render :new
+        redirect_to new_user_place_path(current_user)
       end
     else
       flash[:alert] = "Must be logged in to do that"
