@@ -10,13 +10,15 @@ Rails.application.routes.draw do
   resources :users do
     resources :places
   end
-  resources :places
+  resources :places do
+    resources :comments
+  end
 
   resources :neighborhoods, only: [:index, :show]
 
   root 'welcome#index'
 
-  post '/users/:user_id/places/:id', to: 'places#add_comment', as: 'add_comment'
+  # post '/users/:user_id/places/:id', to: 'places#add_comment', as: 'add_comment'
 
   get '/users/most_places' => 'users#most_places'
 end

@@ -1,10 +1,9 @@
 class CommentsController < ApplicationController
-  before_action :set_place
+  before_action :define_place
 
   def index
     @comments = @place.comments
 
-    # render :layout => false
     render :json => @comments
   end
 

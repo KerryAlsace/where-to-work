@@ -15,8 +15,15 @@ end
 
 5.times do |i|
   id = i + 1
+  p = Place.find(id)
+  c = Comment.create(user_id: id, place_id: id, body: "User #{id} says Place #{id} is great")
+  p.comments << c
+end
+
+5.times do |i|
+  id = i + 1
   other_id = id + 1
-  SharedPlace.create(place_id: id, friend_id: other_id, comment: "User #{other_id} says Place #{id} is great")
+  SharedPlace.create(place_id: id, friend_id: other_id)
 end
 
 User.first.admin!

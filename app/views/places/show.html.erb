@@ -16,53 +16,11 @@ Address: <br>
 <%= @place.address.state %><br>
 <%= @place.address.zipcode %><br><br>
 
-<table>
-  <thead>
-    <tr>
-      <th>Comments: </th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @place.comments.each do |comment| %>
-    <tr>
-      <% if (comment != nil && comment != "")%>
-        <td>"<%= comment %>"</td>
-      <% end %>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= link_to "Display Comments", place_comments_path(@place), class: "load_comments" %><br>
+<div class="comments"></div>
 
 <br><br><br>
 
 <% if @permitted_editor %>
   <%= link_to "Edit Place", edit_user_place_path(@place.creator_id, @place) %>
-<% end %>
-
-<br><br>
-
-<% if @place.current_user_shared_place(current_user) %>
-  <% if @current_comment %>
-    <h2>Edit Your comment:</h2>
-    <%= form_for(@comment) do |f| %>
-      <p>
-        <%= f.label :comment %><br>
-        <%= f.text_area :comment, placeholder: @shared_place.comment %>
-      </p>
-      <p>
-        <%= f.submit "Save Edit" %>
-      </p>
-    <% end %>
-  <% else %>
-    <h2>Add a comment:</h2>
-    <%= form_for(@comment) do |f| %>
-      <p>
-        <%= f.label :comment %><br>
-        <%= f.text_area :comment %>
-      </p>
-      <p>
-        <%= f.submit "Add Comment" %>
-      </p>
-    <% end %>
-  <% end %>
 <% end %>
