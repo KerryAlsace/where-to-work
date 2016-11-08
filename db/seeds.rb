@@ -16,7 +16,7 @@ end
 5.times do |i|
   id = i + 1
   p = Place.find(id)
-  c = Comment.create(user_id: id, place_id: id, body: "User #{id} says Place #{id} is great")
+  c = Comment.create(place_id: id, body: "Place #{id} is great")
   p.comments << c
 end
 
