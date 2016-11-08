@@ -19,6 +19,12 @@ Address: <br>
 <%= link_to "Display Comments", place_comments_path(@place), class: "load_comments" %><br>
 <div class="comments"></div>
 
+<% binding.pry %>
+<%= form_for([@place, @comment]) do |f| %>
+  <%= f.text_area :body %>
+  <p><%= f.submit %></p>
+<% end %>
+
 <br><br><br>
 
 <% if @permitted_editor %>

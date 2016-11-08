@@ -54,6 +54,8 @@ class PlacesController < ApplicationController
       redirect_to user_places_path
     elsif @place.current_user_shared_place(current_user)
       @shared_place = @place.current_user_shared_place(current_user)
+      @comments = @place.comments
+      @comment = Comment.new
     end
     if allowed_to_edit_place?
       @permitted_editor = current_user
