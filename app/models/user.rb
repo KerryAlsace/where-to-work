@@ -1,7 +1,6 @@
 class User < ApplicationRecord
   has_many :places, foreign_key: 'creator_id'
   has_many :shared_places, foreign_key: 'friend_id'
-  has_many :comments
   enum role: [ :user, :admin ]
 
   validates_presence_of :username
