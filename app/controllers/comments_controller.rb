@@ -9,9 +9,11 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @place.comments.build(comments_params)
-    @comment.save
-
-    render :json => @comment
+    if @comment.save
+      render "comments/show", layout: false
+    else
+      redirect_to "posts/show"
+    end
   end
 
   private

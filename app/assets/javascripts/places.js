@@ -19,11 +19,10 @@ $(function() {
   });
 
   // When a user adds a comment and clicks to submit
-  $("input.add_comment").on("click", function(e){
-    e.preventDefault();
+  $("#new_comment").on("submit", function(e){
 
     $.ajax({
-      type: ($("input[name='_method']").val() || this.method),
+      type: "POST",
       url: this.action,
       data: $(this).serialize(),
       success: function(response){
@@ -35,7 +34,7 @@ $(function() {
       }
     });
 
-
+    e.preventDefault();
   });
 
 });
