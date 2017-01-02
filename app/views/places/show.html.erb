@@ -16,12 +16,15 @@ Address: <br>
 <%= @place.address.state %><br>
 <%= @place.address.zipcode %><br><br>
 
-<%= link_to "Display Comments", place_comments_path(@place), class: "load_comments" %><br>
+<%= link_to "Click to Show Comments", place_comments_path(@place), class: "load_comments" %><br>
 <ol class="comments"></ol>
 
+<br>
+
+Add a comment:<br>
 <%= form_for(@comment, url: place_comments_path(@place)) do |f| %>
   <%= f.text_area :body %>
-  <p><%= f.submit %></p>
+  <p><%= f.submit "Add" %></p>
 <% end %>
 
 <br><br><br>
