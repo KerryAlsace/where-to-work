@@ -22,17 +22,22 @@ $(function() {
   $("#new_comment").on("submit", function(e){
 
     $.ajax({
-      type: "POST",
+      method: "POST",
       url: this.action,
       data: $(this).serialize(),
-      success: function(response){
-        // Empty comment box
-        $("#comment_body").val("");
-        var $ol = $("ol.comments")
-        $ol.append(response);
-        $("input.add_comment").prop('disabled', false)
-      }
-    });
+      dataType: "json"
+    })
+    .success(function(json){
+      // Empty comment box
+      $("#comment_body").val("");
+      console.log(json)
+      var $ol = $("ol.comments")
+      $ol.append(json.body);
+      $("input.add_comment").prop('disabled', false)
+    })
+    .error(function(error) {
+      console.log("Error:", error)
+    })
 
     e.preventDefault();
   });

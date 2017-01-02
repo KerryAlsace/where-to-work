@@ -4,13 +4,13 @@ class CommentsController < ApplicationController
   def index
     @comments = @place.comments
 
-    render :json => @comments
+    render json: @comments
   end
 
   def create
     @comment = @place.comments.build(comments_params)
     if @comment.save
-      render "comments/show", layout: false
+      render json: @comment
     else
       redirect_to "posts/show"
     end
