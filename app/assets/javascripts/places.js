@@ -20,6 +20,7 @@ $(function() {
 
   // When a user adds a comment and clicks to submit
   $("#new_comment").on("submit", function(e){
+    $("input.add_comment").removeAttr('data-disable-with');
 
     $.ajax({
       method: "POST",
@@ -30,10 +31,10 @@ $(function() {
     .success(function(json){
       // Empty comment box
       $("#comment_body").val("");
-      console.log(json)
-      var $ol = $("ol.comments")
-      $ol.append(json.body);
-      $("input.add_comment").prop('disabled', false)
+
+      var comment = new Comment(json);
+      var commentLi = comment.renderLI();
+      $("ol.comments").append(commentLi);
     })
     .error(function(error) {
       console.log("Error:", error)
@@ -43,3 +44,12 @@ $(function() {
   });
 
 });
+
+function Comment(attributes) {
+  this.body = attributes.body;
+  this.id = attributes.id;
+}
+
+Comment.prototype.renderLI = function() {
+  return "<li>" + this.body + "</li>"
+}
