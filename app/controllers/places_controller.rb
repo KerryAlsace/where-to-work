@@ -55,7 +55,7 @@ class PlacesController < ApplicationController
     elsif @place.current_user_shared_place(current_user)
       @shared_place = @place.current_user_shared_place(current_user)
       @comments = @place.comments
-      @comment = Comment.new
+      # @comment = @place.comments.build
     end
     if allowed_to_edit_place?
       @permitted_editor = current_user
