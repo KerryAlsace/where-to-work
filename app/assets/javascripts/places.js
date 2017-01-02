@@ -5,12 +5,12 @@ $(function() {
 
     // Send AJAX get request and if successful:
     $.get(this.href).success(function(json){
-      var $div = $("div.comments")
-      $div.html("") // Clear the comments div first
+      var $ol = $("ol.comments")
+      $ol.html("") // Clear the comments div first
 
       // Add comments to DOM
       json.forEach(function(comment){
-        $div.append("<p>" + comment.body + "</p>");
+        $ol.append("<li>" + comment.body + "</li>");
       });
     });
 
