@@ -8,9 +8,10 @@ class CommentsController < ApplicationController
   end
 
   def create
-    binding.pry
     @comment = @place.comments.build(comments_params)
     @comment.save
+
+    render :json => @comment
   end
 
   private

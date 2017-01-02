@@ -24,7 +24,7 @@ Address: <br>
 Add a comment:<br>
 <%= form_for(@comment, url: place_comments_path(@place)) do |f| %>
   <%= f.text_area :body %>
-  <p><%= f.submit "Add" %></p>
+  <p><%= f.submit "Add", class: "add_comment" %></p>
 <% end %>
 
 <br><br><br>

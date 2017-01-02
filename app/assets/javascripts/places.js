@@ -19,7 +19,7 @@ $(function() {
   });
 
   // When a user adds a comment and clicks to submit
-  $("#new_comment").on("submit", function(e){
+  $("input.add_comment").on("click", function(e){
     e.preventDefault();
 
     $.ajax({
@@ -28,6 +28,10 @@ $(function() {
       data: $(this).serialize(),
       success: function(response){
         debugger
+        // Empty comment box
+        $("comment_body").val("");
+        var $ol = $("ol.comments")
+        $ol.append(response);
       }
     });
 
