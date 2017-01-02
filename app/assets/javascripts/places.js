@@ -26,11 +26,11 @@ $(function() {
       url: this.action,
       data: $(this).serialize(),
       success: function(response){
-        debugger
         // Empty comment box
-        $("comment_body").val("");
+        $("#comment_body").val("");
         var $ol = $("ol.comments")
         $ol.append(response);
+        $("input.add_comment").prop('disabled', false)
       }
     });
 
