@@ -43,6 +43,7 @@ class PlacesController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
     define_place
     if !current_user
       flash[:alert] = "Must be logged in to do that"
@@ -55,7 +56,7 @@ class PlacesController < ApplicationController
     elsif @place.current_user_shared_place(current_user)
       @shared_place = @place.current_user_shared_place(current_user)
       @comments = @place.comments
-      # @comment = @place.comments.build
+      @comment = @place.comments.build
     end
     if allowed_to_edit_place?
       @permitted_editor = current_user
