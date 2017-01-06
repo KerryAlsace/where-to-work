@@ -1,5 +1,12 @@
 class PlacesController < ApplicationController
 
+  def neighborhood_places
+    @neighborhood = Neighborhood.find(params[:neighborhood_id])
+    @places = @neighborhood.places
+
+    render json: @places
+  end
+
   def index
     if current_user && current_user.admin?
       @places = Place.all

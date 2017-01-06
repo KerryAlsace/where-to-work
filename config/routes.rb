@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   resources :neighborhoods, only: [:index, :show]
 
+  get 'neighborhoods/:neighborhood_id/places', to: 'places#neighborhood_places', as: 'get_neighborhood_places'
+
   root 'welcome#index'
 
   # post '/users/:user_id/places/:id', to: 'places#add_comment', as: 'add_comment'

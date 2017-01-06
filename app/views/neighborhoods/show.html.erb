@@ -1,5 +1,4 @@
 <h1><%= @neighborhood.name %></h1>
 
-<% @neighborhood.places.each do |place| %>
-  <%= link_to place.name, user_place_path(place.creator_id, place) %><br>
-<% end %>
+<h3>Places in this Neighborhood</h3>
+<ol class="places"></ol>
