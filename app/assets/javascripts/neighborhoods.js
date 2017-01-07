@@ -1,5 +1,6 @@
 // Wait until everything has loaded
 $(function() {
+  if (this.URL.includes("neighborhoods")) {
     var id = this.URL.replace(/(http:\/\/localhost:3000\/neighborhoods\/)+/g, '')
     var url = `/neighborhoods/${id}/places`
 
@@ -22,7 +23,7 @@ $(function() {
     .error(function(error) {
       console.log("Error:", error)
     })
-
+  }
 });
 
 function Place(attributes) {
