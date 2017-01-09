@@ -2,8 +2,10 @@
 
 Specs:
 - [x] Use jQuery for implementing new requirements
-- [ ] Include a show resource rendered using jQuery and an Active Model Serialization JSON backend.
-- [ ] Include an index resource rendered using jQuery and an Active Model Serialization JSON backend.
+- [x] Include a show resource rendered using jQuery and an Active Model Serialization JSON backend.
+  On the Neighborhood show pages, the Places in that neighborhood are rendered as show and have pagination to go through them all.
+- [x] Include an index resource rendered using jQuery and an Active Model Serialization JSON backend.
+  On Place show pages, the place's comments index are displayed through jquery
 - [x] Include at least one has_many relationship in information rendered via JSON and appended to the DOM.
   A Place's comments can be viewed on the Place show page by clicking to "show comments", then the comments are loaded below the Place details without the page refreshing.
 - [x] Include at least one link that loads or updates a resource without reloading the page.
