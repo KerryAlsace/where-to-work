@@ -2,3 +2,23 @@
 
 <h3>Places in this Neighborhood</h3>
 <ol class="places"></ol>
+
+<script id="place-template" type="text/x-handlebars-template">
+  <div class="entry">
+    <h3>{{name}}</h3>
+    <div class="body">
+      <ol>
+        <li>Wifi?: {{wifi}}</li>
+        <li>Wifi quality: {{wifi_quality}}</li>
+        <li>Has restroom?: {{public_restroom}}</li>
+        <li>Restroom cleanliness: {{restroom_cleanliness}}</li>
+        <li>Costs money?: {{costs_money}}</li>
+      </ol>
+    </div>
+  </div>
+</script>
+
+<a href="javascript:prevPage()" id="btn_prev">Prev</a>
+<a href="javascript:nextPage()" id="btn_next">Next</a>
+<br>
+page: <span id="page"></span>

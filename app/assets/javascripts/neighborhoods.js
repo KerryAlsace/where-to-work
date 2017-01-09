@@ -1,3 +1,6 @@
+var current_page = 1;
+var placesJson = [];
+
 // Wait until everything has loaded
 $(function() {
   if (this.URL.includes("neighborhoods")) {
@@ -16,8 +19,10 @@ $(function() {
 
       json.forEach(function(place_attributes) {
         var place = new Place(place_attributes);
-        var placeDisplay = place.renderDisplay(place);
-        $("ol.places").append(placeDisplay);
+        placesJson.push(place)
+        changePage(1);
+        // var placeDisplay = place.renderDisplay(place);
+        // $("ol.places").append(placeDisplay);
       })
     })
     .error(function(error) {
@@ -41,4 +46,49 @@ Place.prototype.renderDisplay = function(place) {
   var source   = $("#place-template").html();
   var template = Handlebars.compile(source);
   return template(place)
+}
+
+function prevPage() {
+  if (current_page > 1) {
+    current_page--;
+    changePage(current_page);
+  }
+}
+
+function nextPage() {
+  if (current_page < numPages()) {
+    current_page++;
+    changePage(current_page);
+  }
+}
+
+function changePage(page) {
+  // Validate page
+  if (page < 1) page = 1;
+  if (page > numPages()) page = numPages();
+
+  $("ol.places").html("")
+
+  for (var i = (page-1); i < (page) && i < placesJson.length; i++) {
+    var placeDisplay = placesJson[i].renderDisplay(placesJson[i]);
+    $("ol.places").append(placeDisplay);
+  }
+
+  $("#page").html(page + "/" + numPages());
+
+  if (page == 1) {
+    $("#btn_prev").hide();
+  } else {
+    $("#btn_prev").show();
+  }
+
+  if (page == numPages()) {
+    $("#btn_next").hide();
+  } else {
+    $("#btn_next").show();
+  }
+}
+
+function numPages() {
+  return Math.ceil(placesJson.length);
 }
