@@ -10,7 +10,10 @@
   id = i + 1
   neighborhood = Neighborhood.create(name: "Neighborhood #{id}")
   u = User.create(username: "user#{id}", password: "test1234")
-  u.places.create(name: "Place #{id}", neighborhood: neighborhood, wifi: true, wifi_quality: 3, public_restroom: true, restroom_cleanliness: 3, costs_money: true, creator_id: u.id, address_attributes: { street1: "#{id} Main st.", city: "New York", state: "NY", zipcode: "1000#{i}"})
+
+  5.times do |n|
+    u.places.create(name: "Place #{n += n}", neighborhood: neighborhood, wifi: true, wifi_quality: 3, public_restroom: true, restroom_cleanliness: 3, costs_money: true, creator_id: u.id, address_attributes: { street1: "#{id} Main st.", city: "New York", state: "NY", zipcode: "1000#{i}"})
+  end
 end
 
 5.times do |i|
