@@ -31,3 +31,10 @@ Must translate the JSON responses into Javascript Model Objects. The Model Objec
 Borrowing from the previous example, instead of plainly taking the JSON response of the newly created comment and appending it to the DOM, you would create a Comment prototype object and add a function to that prototype to perhaps concatenate (format) the comments authors first and last name. You would then use the object to append the comment information to the DOM.
 
   * Similar to what was done in the handlebars video- create a comment object and use that to format the comment before appending to the dom
+
+  Add handlebars:
+
+  cd vendor/assets/javascripts
+  `curl -O https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js`
+  In application.js:
+  //= require handlebars.min
