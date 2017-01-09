@@ -9,8 +9,10 @@ $(function() {
       $ol.html("") // Clear the comments div first
 
       // Add comments to DOM
-      json.forEach(function(comment){
-        $ol.append("<li>" + comment.body + "</li>");
+      json.forEach(function(comment_attributes){
+        var comment = new Comment(comment_attributes);
+        var commentLi = comment.renderLI();
+        $ol.append(commentLi);
       });
     });
 
