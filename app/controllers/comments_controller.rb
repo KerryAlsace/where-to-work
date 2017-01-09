@@ -17,6 +17,14 @@ class CommentsController < ApplicationController
   end
 
   private
+    def define_place
+      if params[:place_id]
+        @place = Place.find(params[:place_id])
+      else
+        @place = Place.find(params[:id])
+      end
+    end
+
     def comments_params
       params.require(:comment).permit(:body)
     end
