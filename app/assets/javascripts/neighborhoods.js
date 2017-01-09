@@ -16,7 +16,7 @@ $(function() {
 
       json.forEach(function(place_attributes) {
         var place = new Place(place_attributes);
-        var placeDisplay = place.renderDisplay();
+        var placeDisplay = place.renderDisplay(place);
         $("ol.places").append(placeDisplay);
       })
     })
@@ -37,6 +37,8 @@ function Place(attributes) {
   this.creator_id = attributes.creator_id;
 }
 
-Place.prototype.renderDisplay = function() {
-  return "<li>" + this.name + "</li>"
+Place.prototype.renderDisplay = function(place) {
+  var source   = $("#place-template").html();
+  var template = Handlebars.compile(source);
+  return template(place)
 }
