@@ -6,13 +6,15 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+random_boolean = [true, false].sample
+
 10.times do |i|
   id = i + 1
   neighborhood = Neighborhood.create(name: "Neighborhood #{id}")
   u = User.create(username: "user#{id}", password: "test1234")
 
   5.times do |n|
-    u.places.create(name: "Place #{n += n}", neighborhood: neighborhood, wifi: true, wifi_quality: 3, public_restroom: true, restroom_cleanliness: 3, costs_money: true, creator_id: u.id, address_attributes: { street1: "#{id} Main st.", city: "New York", state: "NY", zipcode: "1000#{i}"})
+    u.places.create(name: "Place #{i + n}", neighborhood: neighborhood, wifi: "#{random_boolean}", wifi_quality: "#{rand(5)}", public_restroom: "#{random_boolean}", restroom_cleanliness: "#{rand(5)}", costs_money: "#{random_boolean}", creator_id: u.id, address_attributes: { street1: "#{rand(5)} Main st.", city: "New York", state: "NY", zipcode: "1000#{i}"})
   end
 end
 
