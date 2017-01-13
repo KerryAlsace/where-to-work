@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
   end
 
   def create
+    binding.pry
     @comment = @place.comments.build(comments_params)
     if @comment.save
       render json: @comment
